@@ -2,64 +2,83 @@
 
 Sitio web de referencia para el control y prevención del heno motita (*Tillandsia recurvata*) en el Valle del Mezquital, Hidalgo, México.
 
-## Estructura
+## Estructura del proyecto
 
 ```
-index.html        Sitio completo (una sola página, todas las secciones)
-_headers          Cabeceras de seguridad para Cloudflare Pages
-_redirects        Redirecciones URL para Cloudflare Pages
+index.html                    Sitio completo (una sola página, diez secciones)
+ZRE.png                       Mapa oficial de la Zona de Restauración Ecológica (DOF 26/09/2024)
+gen_taller.py                 Generador de PDF para talleres de capacitación (ReportLab)
+taller-01-heno-motita.pdf     Taller 1: Primera campaña de control (30 min, 5 módulos + ZRE)
+wrangler.toml                 Configuración de Cloudflare Workers
+_headers                      Cabeceras de seguridad (CSP, X-Frame-Options, etc.)
+_redirects                    Redirecciones URL para Cloudflare Pages
+.github/workflows/deploy.yml  Despliegue automático vía GitHub Actions
 ```
 
-## Antes de publicar — pasos obligatorios
+## Secciones del sitio
 
-### 1. Conectar el formulario de contacto
+| Sección | Contenido |
+|---------|-----------|
+| Inicio | Presentación y llamada a la acción |
+| ¿Qué es? | Biología de *T. recurvata*, rol dual epífito/parásito |
+| El problema | Escala del daño, hospederos afectados, dispersión |
+| Decreto ZRE | Zona de Restauración Ecológica Presa Endhó (DOF 26/09/2024) |
+| Métodos de control | Protocolos mecánico, químico y combinado |
+| Prevención | Manejo integrado, ventana óptima enero–abril |
+| Errores comunes | Mitos y errores que hacen fracasar una campaña |
+| Preguntas frecuentes | FAQ para brigadistas y ciudadanos |
+| Únete | Formulario de inscripción a brigadas de control |
+| Referencias | Fuentes científicas e institucionales |
 
-En `index.html`, busca esta línea (aprox. línea 2016):
+## Despliegue
+
+El sitio se despliega automáticamente en Cloudflare Workers cada vez que se hace `git push` a la rama `main`, usando el workflow `.github/workflows/deploy.yml`.
+
+**Requisito:** el secreto `CLOUDFLARE_API_TOKEN` debe estar configurado en GitHub → Settings → Secrets and variables → Actions.
+
+Para despliegue manual desde terminal:
+
+```bash
+npx wrangler deploy
+```
+
+## Formulario de contacto
+
+El formulario usa [FormSubmit.co](https://formsubmit.co) sin backend propio. El endpoint está configurado en `index.html`:
 
 ```js
-var FORM_ENDPOINT = 'https://formsubmit.co/ajax/REEMPLAZA_CON_TU_CORREO@dominio.com';
+var FORM_ENDPOINT = 'https://formsubmit.co/ajax/...';
 ```
 
-Reemplaza `REEMPLAZA_CON_TU_CORREO@dominio.com` con el correo donde quieres recibir las inscripciones a brigadas. Ejemplo:
+La primera vez que alguien envía el formulario, FormSubmit envía un correo de verificación al destinatario. Una vez confirmado, los envíos llegan automáticamente. No se requiere cuenta ni servidor.
 
-```js
-var FORM_ENDPOINT = 'https://formsubmit.co/ajax/henomotita@correo.com';
+## Talleres de capacitación
+
+El archivo `gen_taller.py` genera PDFs de talleres usando [ReportLab](https://www.reportlab.com/). Requiere Python 3 y el paquete `reportlab`:
+
+```bash
+pip install reportlab
+python3 gen_taller.py
 ```
 
-La primera vez que alguien llene el formulario, FormSubmit te enviará un correo de verificación. Cuando lo confirmes, todos los envíos futuros llegarán automáticamente. No se necesita cuenta ni configuración adicional.
+Genera `taller-01-heno-motita.pdf` con 6 páginas:
+- Portada con tabla de módulos
+- Módulo 1: El problema (qué es y cuándo es dañino)
+- Módulo 2: Evaluar la infestación
+- Módulo 3: Métodos de control (mecánico, bicarbonato, poda)
+- Módulo 4: Errores comunes
+- Módulo 5: Plan de acción / organizar la brigada
+- Módulo ZRE: Decreto federal y alcance de la Zona de Restauración Ecológica
 
-### 2. Despliegue en Cloudflare Pages
+## Marco normativo
 
-1. Sube este repositorio a GitHub (cuenta gratuita)
-2. Entra a [pages.cloudflare.com](https://pages.cloudflare.com)
-3. Clic en **Create a project** → **Connect to Git**
-4. Selecciona este repositorio
-5. Configuración de build:
-   - **Framework preset**: None
-   - **Build command**: (vacío — no requiere compilación)
-   - **Build output directory**: `/` (barra diagonal solamente)
-6. Clic en **Save and Deploy**
+El sitio incluye una sección dedicada al **Decreto de Zona de Restauración Ecológica de la Presa Endhó** (DOF 26/09/2024), que declara 36,637 ha del Valle del Mezquital como ZRE y nombra explícitamente al heno motita como especie invasora de control obligatorio en 8 municipios:
 
-### 3. Conectar el dominio henomotita.mx
+Atitalaquia · Atotonilco de Tula · Tepeji del Río · Tepetitlán · Tezontepec de Aldama · Tlahuelilpan · Tlaxcoapan · Tula de Allende
 
-En el panel de Cloudflare Pages (después del despliegue):
+## Fuentes científicas
 
-1. Ve a tu proyecto → **Custom domains**
-2. Clic en **Set up a custom domain**
-3. Escribe `henomotita.mx`
-4. Cloudflare te dará los registros DNS para configurar en NIC México
-
-En NIC México (panel de administración del dominio):
-- Cambiar los **nameservers** a los que te indique Cloudflare, o
-- Agregar los registros CNAME que Cloudflare especifique
-
-### 4. Despliegue automático
-
-Una vez conectado, cada vez que hagas `git push` al repositorio, Cloudflare Pages desplegará automáticamente los cambios en 1–2 minutos.
-
-## Contenido científico
-
-El contenido está basado en artículos científicos revisados por pares, documentos de CONAFOR, INIFAP, y estudios de la UTTT (Universidad Tecnológica Tula-Tepeji). Las referencias se listan en la sección "Referencias" del sitio.
+El contenido está basado en artículos revisados por pares, documentos de CONAFOR, INIFAP, SEMARNAT y estudios de la Universidad Tecnológica Tula-Tepeji (UTTT), la UNAM y la UAEH. Las referencias completas se listan en la sección "Referencias" del sitio.
 
 ## Licencia
 
