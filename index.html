@@ -744,7 +744,8 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 
 /* ─── MISC ─── */
 .two-col { display: grid; gap: 2.5rem; }
-@media(min-width:768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+.two-col > * { min-width: 0; }
+@media(min-width:768px) { .two-col { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
 
 .inset-box {
   background: var(--sand); border: 1px solid var(--rule);
@@ -1382,9 +1383,9 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
           <p>El heno motita acumula metales pesados (Pb, Cd) en sus tricomas hasta <strong>40× más concentrado</strong> que en zonas agrícolas. El material removido en esta zona <strong>NO debe usarse como forraje o composta</strong> sin análisis de metales. <cite>(ACP 2009 — Atmospheric Chemistry and Physics)</cite></p>
         </div>
 
-        <div class="inset-box" style="margin-top:1rem; background: #FFF8E6; border-color: var(--ochre);">
-          <h4 style="color:var(--ochre);margin-bottom:0.5rem;">Sin control, vuelve en menos de 1 año</h4>
-          <p style="font-size:0.88rem;">La reinfestación desde árboles vecinos no tratados ocurre en menos de 12 meses. Esto hace imprescindible el <strong>manejo coordinado a escala de ejido o barrio</strong>, no solo árbol por árbol.</p>
+        <div class="inset-box" style="margin-top:1rem; background: #FFF8E6; border-color: var(--ochre); text-align: left;">
+          <h4 style="color:var(--ochre);margin-bottom:0.5rem;text-align:left;">Sin control, vuelve en menos de 1 año</h4>
+          <p style="font-size:0.88rem;text-align:left;">La reinfestación desde árboles vecinos no tratados ocurre en menos de 12 meses. Esto hace imprescindible el <strong>manejo coordinado a escala de ejido o barrio</strong>, no solo árbol por árbol.</p>
         </div>
       </div>
     </div>
