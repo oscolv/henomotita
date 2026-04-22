@@ -1,0 +1,7 @@
+node_modules/
+.github/
+*.py
+*.toml
+*.md
+_redirects
+.assetsignore
