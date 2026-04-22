@@ -14,3 +14,6 @@ Thumbs.db
 # Variables de entorno locales
 .env
 .env.local
+
+# Wrangler
+.wrangler/
