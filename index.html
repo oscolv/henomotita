@@ -975,11 +975,104 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 /* SVG map container */
 .map-container {
   border-radius: var(--r-l); overflow: hidden; background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1); padding: 1.25rem; margin-bottom: 1.2rem;
+  border: 1px solid rgba(255,255,255,0.1); padding: 1.25rem; margin-bottom: 0;
 }
 .map-container h4 { color: var(--gold-l); font-size: 0.78rem; letter-spacing: 0.1em;
   text-transform: uppercase; font-family: 'Raleway', sans-serif; font-weight: 700;
   margin-bottom: 0.8rem; }
+
+/* ─── PROBLEMA STATS STRIP ─── */
+.problema-stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.10);
+  border-radius: var(--r-l);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 2.5rem;
+}
+.pstat {
+  background: rgba(255,255,255,0.04);
+  padding: 1.5rem 1rem;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.2rem; text-align: center;
+}
+.pstat-num {
+  font-family: 'Raleway',sans-serif; font-size: 2.1rem; font-weight: 800;
+  color: var(--gold-l); line-height: 1; letter-spacing: -0.02em;
+}
+.pstat-label {
+  font-size: 0.68rem; font-family: 'Raleway',sans-serif;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.48); line-height: 1.4; margin-top: 0.2rem;
+}
+@media(max-width:640px) {
+  .problema-stats { grid-template-columns: repeat(2,1fr); }
+  .pstat-num { font-size: 1.75rem; }
+  .pstat { padding: 1.1rem 0.8rem; }
+}
+
+/* ─── PROBLEMA MAIN GRID ─── */
+.problema-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 2rem; align-items: start;
+}
+@media(max-width:768px) { .problema-grid { grid-template-columns: 1fr; } }
+
+/* ─── HOSPEDEROS STRIP ─── */
+.hospederos-strip {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 0.7rem; margin-top: 1.5rem;
+}
+@media(max-width:640px) { .hospederos-strip { grid-template-columns: repeat(2,1fr); } }
+.hosta-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--r-m); padding: 1rem 0.9rem;
+}
+.hosta-card.primary { border-top: 2px solid var(--gold); }
+.hosta-card.secondary { border-top: 2px solid rgba(255,255,255,0.18); }
+.hosta-name {
+  font-family: 'Raleway',sans-serif; font-weight: 800; font-size: 0.97rem;
+  display: block; margin-bottom: 0.2rem;
+}
+.hosta-card.primary .hosta-name { color: var(--gold-l); }
+.hosta-card.secondary .hosta-name { color: rgba(255,255,255,0.65); }
+.hosta-sci {
+  font-style: italic; font-size: 0.73rem; color: rgba(255,255,255,0.38);
+  display: block; margin-bottom: 0.5rem; line-height: 1.3;
+}
+.hosta-badge {
+  display: inline-block;
+  font-family: 'Raleway',sans-serif; font-size: 0.63rem;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  padding: 2px 8px; border-radius: 20px;
+}
+.hosta-card.primary .hosta-badge { background: rgba(212,146,44,0.20); color: var(--gold-l); }
+.hosta-card.secondary .hosta-badge { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); }
+
+/* ─── PROBLEMA WARNING BAND ─── */
+.problema-warning {
+  margin-top: 1.5rem;
+  background: rgba(212,146,44,0.08);
+  border: 1px solid rgba(212,146,44,0.28);
+  border-radius: var(--r-l);
+  padding: 1.3rem 1.75rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem; align-items: center;
+}
+@media(max-width:640px) { .problema-warning { grid-template-columns: 1fr; } }
+.pw-icon { font-size: 1.8rem; line-height: 1; }
+.pw-title {
+  font-family: 'Raleway',sans-serif; font-weight: 700;
+  font-size: 0.80rem; text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--gold-l); margin-bottom: 0.35rem;
+}
+.pw-body { font-size: 0.87rem; color: rgba(255,255,255,0.70); margin: 0; line-height: 1.6; }
 
 /* ─── DARK SECTION: ERRORES ─── */
 .section-errores {
@@ -1226,8 +1319,31 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       <p class="sh-lead">El Valle del Mezquital concentra el daño más documentado de <em>Tillandsia recurvata</em> en el Altiplano Central de México.</p>
     </div>
 
-    <div class="two-col reveal">
-      <div>
+    <!-- Stats strip -->
+    <div class="problema-stats reveal">
+      <div class="pstat">
+        <span class="pstat-num">36,637</span>
+        <span class="pstat-label">hectáreas — Zona de Restauración Ecológica</span>
+      </div>
+      <div class="pstat">
+        <span class="pstat-num">84+</span>
+        <span class="pstat-label">municipios afectados en Hidalgo</span>
+      </div>
+      <div class="pstat">
+        <span class="pstat-num">≥50%</span>
+        <span class="pstat-label">cobertura de rama = umbral de daño crítico</span>
+      </div>
+      <div class="pstat">
+        <span class="pstat-num">40×</span>
+        <span class="pstat-label">más metales Pb·Cd en zona industrial Tula-Tepeji</span>
+      </div>
+    </div>
+
+    <!-- Main grid: mapa + daño -->
+    <div class="problema-grid reveal">
+
+      <!-- Columna izquierda: mapa + municipios -->
+      <div style="display:flex;flex-direction:column;gap:1rem;">
         <div class="map-container">
           <h4>Municipios prioritarios — Valle del Mezquital, Hidalgo</h4>
           <svg viewBox="0 0 360 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
@@ -1272,9 +1388,10 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
             <text x="355" y="274" text-anchor="end" font-family="'Raleway',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.35)" font-weight="600" letter-spacing="0.06em">HIDALGO · MÉXICO</text>
           </svg>
         </div>
-        <div class="inset-box">
-          <h4 style="margin-bottom:0.5rem;">Municipios afectados</h4>
-          <p style="font-size:0.78rem;color:var(--ink-l);margin-bottom:0.7rem;font-family:'Raleway',sans-serif;">Los 8 municipios de la <strong>Zona de Restauración Ecológica</strong> (Decreto DOF 26/09/2024):</p>
+
+        <!-- Municipios ZRE -->
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:var(--r-m);padding:1.2rem 1.4rem;">
+          <p style="font-family:'Raleway',sans-serif;font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);margin-bottom:0.8rem;">8 municipios · Zona de Restauración Ecológica · DOF 2024</p>
           <div class="municipios-grid">
             <span class="muni-tag">Tula de Allende</span>
             <span class="muni-tag">Tepeji del Río</span>
@@ -1284,90 +1401,85 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
             <span class="muni-tag">Tezontepec de Aldama</span>
             <span class="muni-tag">Tlahuelilpan</span>
             <span class="muni-tag">Tlaxcoapan</span>
-            <span class="muni-tag">Ixmiquilpan</span>
-            <span class="muni-tag">Cardonal</span>
-            <span class="muni-tag">Tecozautla</span>
-            <span class="muni-tag" style="background:rgba(30,61,10,0.06);color:var(--ink-l);font-style:italic;">y 84 municipios de Hidalgo</span>
           </div>
-        </div>
-        <div style="margin-top:1rem;">
-          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold-l);margin-bottom:0.7rem;">Árboles hospederos</p>
-          <div style="display:flex;flex-direction:column;gap:0.5rem;">
-
-            <div style="display:flex;align-items:baseline;gap:0.6rem;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.06);border-radius:var(--r-s);">
-              <span style="font-family:'Raleway',sans-serif;font-weight:800;font-size:0.95rem;color:var(--gold-l);white-space:nowrap;">Mezquite</span>
-              <span style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-style:italic;white-space:nowrap;">Prosopis laevigata</span>
-              <span style="font-size:0.82rem;color:rgba(255,255,255,0.65);margin-left:auto;text-align:right;">primario · más vulnerable</span>
-            </div>
-
-            <div style="display:flex;align-items:baseline;gap:0.6rem;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.06);border-radius:var(--r-s);">
-              <span style="font-family:'Raleway',sans-serif;font-weight:800;font-size:0.95rem;color:var(--gold-l);white-space:nowrap;">Huizache</span>
-              <span style="font-size:0.8rem;color:rgba(255,255,255,0.45);font-style:italic;white-space:nowrap;">Vachellia farnesiana</span>
-              <span style="font-size:0.82rem;color:rgba(255,255,255,0.65);margin-left:auto;text-align:right;">corteza rugosa</span>
-            </div>
-
-            <div style="display:flex;align-items:baseline;gap:0.6rem;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.04);border-radius:var(--r-s);">
-              <span style="font-family:'Raleway',sans-serif;font-weight:800;font-size:0.95rem;color:rgba(255,255,255,0.7);white-space:nowrap;">Pirul</span>
-              <span style="font-size:0.8rem;color:rgba(255,255,255,0.35);font-style:italic;white-space:nowrap;">Schinus molle</span>
-              <span style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-left:auto;text-align:right;">secundario</span>
-            </div>
-
-            <div style="display:flex;align-items:baseline;gap:0.6rem;padding:0.6rem 0.8rem;background:rgba(255,255,255,0.04);border-radius:var(--r-s);">
-              <span style="font-family:'Raleway',sans-serif;font-weight:800;font-size:0.95rem;color:rgba(255,255,255,0.7);white-space:nowrap;">Cactáceas</span>
-              <span style="font-size:0.8rem;color:rgba(255,255,255,0.35);font-style:italic;white-space:nowrap;">Myrtillocactus geometrizans</span>
-              <span style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-left:auto;text-align:right;">secundario</span>
-            </div>
-
-          </div>
+          <p style="font-size:0.73rem;color:rgba(255,255,255,0.40);margin-top:0.7rem;margin-bottom:0;font-style:italic;">Además: Ixmiquilpan, Cardonal, Tecozautla y 84 municipios más en Hidalgo</p>
         </div>
       </div>
-      <div>
-        <h3 style="color:var(--gold-l);margin-bottom:1rem;">Cómo daña al árbol</h3>
-        <div style="display:flex;flex-direction:column;gap:0.6rem;">
 
-          <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
-            <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Modifica xilema y floema</p>
-            <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">Reduce los vasos conductores de agua y azúcares. El árbol pierde eficiencia hidráulica.</p>
-          </div>
+      <!-- Columna derecha: cómo daña -->
+      <div style="display:flex;flex-direction:column;gap:0.6rem;">
+        <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.70rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);margin-bottom:0.4rem;">Cómo daña al árbol</p>
 
-          <div style="background:rgba(192,57,43,0.15);border-left:3px solid #E87070;border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
-            <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:#E87070;margin-bottom:0.25rem;">Umbral crítico ≥50% cobertura</p>
-            <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">A partir de ese punto, la mortalidad de brotes es estadísticamente significativa. <cite style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Flores-Palacios et al. 2014</cite></p>
-          </div>
-
-          <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
-            <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Alelopatía</p>
-            <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">Libera compuestos que inhiben la germinación y crecimiento de plántulas de mezquite.</p>
-          </div>
-
-          <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
-            <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Amplificación por sequía</p>
-            <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">En estrés hídrico, <em>T. recurvata</em> extrae agua activamente del hospedero, convirtiéndose en parásita real. <cite style="font-size:0.8rem;color:rgba(255,255,255,0.45);">ScienceDirect 2021</cite></p>
-          </div>
-
-          <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
-            <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Daño acumulado</p>
-            <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">Los individuos reproductivos causan mayor daño anatómico que los vegetativos. Atacar adultos primero tiene el mayor impacto.</p>
-          </div>
-
+        <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Modifica xilema y floema</p>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">Reduce los vasos conductores de agua y azúcares. El árbol pierde eficiencia hidráulica.</p>
         </div>
 
-        <blockquote class="pull-quote">
+        <div style="background:rgba(192,57,43,0.15);border-left:3px solid #E87070;border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;color:#E87070;margin-bottom:0.25rem;">Umbral crítico ≥50% cobertura</p>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">A partir de ese punto, la mortalidad de brotes es estadísticamente significativa. <cite style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Flores-Palacios et al. 2014</cite></p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Alelopatía</p>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">Libera compuestos que inhiben la germinación y crecimiento de plántulas de mezquite.</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Amplificación por sequía</p>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">En estrés hídrico, <em>T. recurvata</em> extrae agua activamente del hospedero, convirtiéndose en parásita real. <cite style="font-size:0.8rem;color:rgba(255,255,255,0.45);">ScienceDirect 2021</cite></p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--gold);border-radius:0 var(--r-s) var(--r-s) 0;padding:0.75rem 1rem;">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-l);margin-bottom:0.25rem;">Daño acumulado</p>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.78);margin:0;">Los individuos reproductivos causan mayor daño que los vegetativos. Atacar adultos primero tiene el mayor impacto.</p>
+        </div>
+
+        <blockquote class="pull-quote" style="margin-top:0.5rem;">
           <p>«A partir del 50% de cobertura de la rama, la mortalidad de brotes es estadísticamente significativa.»</p>
           <cite>Flores-Palacios et al. (2014) &#8212; <em>Journal of Arid Environments</em></cite>
         </blockquote>
 
-        <div class="warning-box" role="alert">
-          <h4>⚠️ Zona industrial Tula-Tepeji</h4>
-          <p>El heno motita acumula metales pesados (Pb, Cd) en sus tricomas hasta <strong>40× más concentrado</strong> que en zonas agrícolas. El material removido en esta zona <strong>NO debe usarse como forraje o composta</strong> sin análisis de metales. <cite>(ACP 2009 — Atmospheric Chemistry and Physics)</cite></p>
-        </div>
-
-        <div class="inset-box" style="margin-top:1rem; background: #FFF8E6; border-color: var(--ochre); text-align: left;">
-          <h4 style="color:var(--ochre);margin-bottom:0.5rem;text-align:left;">Sin control, vuelve en menos de 1 año</h4>
-          <p style="font-size:0.88rem;text-align:left;color:var(--ink-m);">La reinfestación desde árboles vecinos no tratados ocurre en menos de 12 meses. Esto hace imprescindible el <strong>manejo coordinado a escala de ejido o barrio</strong>, no solo árbol por árbol.</p>
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-m);padding:1.1rem 1.3rem;">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--gold-l);margin-bottom:0.35rem;">Sin control, vuelve en menos de 1 año</p>
+          <p style="font-size:0.87rem;color:rgba(255,255,255,0.70);margin:0;line-height:1.6;">La reinfestación desde árboles vecinos no tratados ocurre en menos de 12 meses. El <strong style="color:rgba(255,255,255,0.85);">manejo debe coordinarse a escala de ejido o barrio</strong>, no solo árbol por árbol.</p>
         </div>
       </div>
     </div>
+
+    <!-- Árboles hospederos -->
+    <div class="hospederos-strip reveal">
+      <div class="hosta-card primary">
+        <span class="hosta-name">Mezquite</span>
+        <span class="hosta-sci">Prosopis laevigata</span>
+        <span class="hosta-badge">primario · más vulnerable</span>
+      </div>
+      <div class="hosta-card primary">
+        <span class="hosta-name">Huizache</span>
+        <span class="hosta-sci">Vachellia farnesiana</span>
+        <span class="hosta-badge">primario · corteza rugosa</span>
+      </div>
+      <div class="hosta-card secondary">
+        <span class="hosta-name">Pirul</span>
+        <span class="hosta-sci">Schinus molle</span>
+        <span class="hosta-badge">secundario</span>
+      </div>
+      <div class="hosta-card secondary">
+        <span class="hosta-name">Cactáceas</span>
+        <span class="hosta-sci">Myrtillocactus geometrizans</span>
+        <span class="hosta-badge">secundario</span>
+      </div>
+    </div>
+
+    <!-- Advertencia zona industrial -->
+    <div class="problema-warning reveal" role="alert">
+      <div class="pw-icon">⚠️</div>
+      <div>
+        <p class="pw-title">Zona Industrial Tula-Tepeji — Precaución con el material removido</p>
+        <p class="pw-body">El heno motita acumula metales pesados (Pb, Cd) en sus tricomas hasta <strong style="color:var(--gold-l);">40× más concentrado</strong> que en zonas agrícolas. El material removido en esta zona <strong style="color:var(--gold-l);">NO debe usarse como forraje o composta</strong> sin análisis de metales. <cite style="color:rgba(255,255,255,0.45);font-style:normal;">(ACP 2009 — Atmospheric Chemistry and Physics)</cite></p>
+      </div>
+    </div>
+
   </div>
 </section>
 
