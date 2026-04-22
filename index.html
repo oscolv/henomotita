@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E3D0A'/%3E%3Ccircle cx='16' cy='13' r='8' fill='%23B8741A'/%3E%3Ccircle cx='16' cy='13' r='5.5' fill='%23D4922C'/%3E%3Ccircle cx='16' cy='13' r='8' fill='none' stroke='%23E8B050' stroke-width='1.2' opacity='0.5'/%3E%3Cline x1='16' y1='5' x2='16' y2='21' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.35'/%3E%3Cline x1='8' y1='13' x2='24' y2='13' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.35'/%3E%3Cline x1='10.3' y1='7.3' x2='21.7' y2='18.7' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.25'/%3E%3Cline x1='21.7' y1='7.3' x2='10.3' y2='18.7' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.25'/%3E%3Crect x='15' y='21' width='2' height='7' rx='1' fill='%235A8F32'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=Raleway:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════
    DESIGN SYSTEM
@@ -850,9 +850,196 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 @media(min-width:1024px) {
   .cards-grid.four { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ─── SCROLL PROGRESS BAR ─── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 2000;
+  background: var(--gold); transform-origin: left center; transform: scaleX(0);
+}
+
+/* ─── SECTION NAV DOTS ─── */
+.section-dots {
+  position: fixed; left: 1.4rem; top: 50%; transform: translateY(-50%);
+  z-index: 900; display: flex; flex-direction: column; gap: 13px;
+  list-style: none;
+}
+@media(max-width:1399px) { .section-dots { display: none; } }
+.s-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(30,61,10,0.22); border: 1.5px solid rgba(30,61,10,0.18);
+  cursor: pointer; transition: all 0.2s ease; position: relative; display: block;
+  text-decoration: none;
+}
+.s-dot:hover, .s-dot.active { background: var(--ochre); border-color: var(--ochre); transform: scale(1.45); }
+.s-dot .dot-tip {
+  position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+  font-family: 'Raleway', sans-serif; font-size: 0.66rem; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink);
+  white-space: nowrap; opacity: 0; transition: opacity 0.15s ease;
+  background: var(--white); padding: 3px 9px; border-radius: 3px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); pointer-events: none;
+}
+.s-dot:hover .dot-tip { opacity: 1; }
+
+/* ─── HERO SPLIT LAYOUT ─── */
+.hero-split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2.5rem; align-items: center;
+}
+@media(max-width:959px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-illustration { display: none; }
+}
+.hero-illustration {
+  display: flex; align-items: center; justify-content: center;
+  position: relative; pointer-events: none;
+}
+.hero-botanical {
+  width: 100%; max-width: 460px; height: auto;
+  opacity: 0.88; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.3));
+}
+
+/* ─── SECTION WATERMARKS ─── */
+.section { position: relative; }
+.section-wm {
+  position: absolute; top: 1.5rem; right: 2rem; z-index: 0; pointer-events: none;
+  font-family: 'Playfair Display', Georgia, serif; font-weight: 800;
+  font-size: clamp(5rem, 14vw, 11rem); line-height: 1;
+  opacity: 0.032; user-select: none; color: currentColor;
+}
+.section-dark .section-wm { opacity: 0.042; color: #ffffff; }
+.section-errores .section-wm { color: #ffffff; opacity: 0.035; }
+
+/* ─── DROP CAP ─── */
+.drop-cap::first-letter {
+  font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+  font-size: 3.8em; line-height: 0.82; float: left;
+  margin-right: 0.07em; margin-top: 0.06em; color: var(--green);
+  padding-top: 0.04em;
+}
+
+/* ─── PULL-QUOTE ─── */
+.pull-quote {
+  position: relative; margin: 2.2rem 0;
+  padding: 1.2rem 1.8rem 1.2rem 3rem;
+  border-left: 3px solid var(--gold);
+}
+.pull-quote::before {
+  content: '\201C'; font-family: 'Playfair Display', Georgia, serif;
+  font-size: 5.5rem; font-weight: 800; line-height: 1;
+  color: var(--gold); opacity: 0.55;
+  position: absolute; left: 0.1rem; top: -0.8rem;
+}
+.pull-quote p {
+  font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+  font-size: clamp(1.05rem, 1.9vw, 1.28rem); line-height: 1.55;
+  color: rgba(255,255,255,0.92); margin: 0;
+}
+.pull-quote cite {
+  display: block; margin-top: 0.75rem;
+  font-family: 'Raleway', sans-serif; font-style: normal; font-size: 0.72rem;
+  font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-l); opacity: 0.8;
+}
+
+/* ─── DARK SECTION: EL PROBLEMA ─── */
+#problema {
+  background: var(--forest); color: var(--white);
+}
+#problema .section-header h2 { color: var(--white); }
+#problema .badge-science { color: var(--gold-l); }
+#problema .badge-science::before { background: var(--gold-l); }
+#problema .divider { background: var(--gold); }
+#problema .sh-lead, #problema > .container > p { color: rgba(255,255,255,0.72); }
+#problema .inset-box {
+  background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);
+}
+#problema .inset-box h4 { color: var(--gold-l); }
+#problema .muni-tag {
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9);
+  border-color: rgba(255,255,255,0.18);
+}
+#problema .damage-list li { color: rgba(255,255,255,0.78); }
+#problema .damage-list li::before { background: var(--gold); }
+#problema .damage-list strong { color: var(--gold-l); }
+#problema .damage-list cite { color: rgba(255,255,255,0.55); }
+#problema h3 { color: var(--gold-l) !important; }
+#problema .warning-box {
+  background: rgba(212,146,44,0.12); border-left-color: var(--gold);
+}
+#problema .warning-box h4 { color: var(--gold-l); }
+#problema .warning-box p { color: rgba(255,255,255,0.72); }
+#problema .stat-highlight { background: rgba(255,255,255,0.06); }
+
+/* SVG map container */
+.map-container {
+  border-radius: var(--r-l); overflow: hidden; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1); padding: 1.25rem; margin-bottom: 1.2rem;
+}
+.map-container h4 { color: var(--gold-l); font-size: 0.78rem; letter-spacing: 0.1em;
+  text-transform: uppercase; font-family: 'Raleway', sans-serif; font-weight: 700;
+  margin-bottom: 0.8rem; }
+
+/* ─── DARK SECTION: ERRORES ─── */
+.section-errores {
+  background: #180E07; color: var(--white);
+}
+.section-errores .section-header h2 { color: var(--white); }
+.section-errores .badge-science { color: var(--gold-l); }
+.section-errores .badge-science::before { background: var(--gold-l); }
+.section-errores .divider { background: var(--gold); }
+.section-errores .sh-lead { color: rgba(255,255,255,0.65); }
+.section-errores .error-card {
+  background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);
+}
+.section-errores .error-wrong {
+  background: rgba(192,57,43,0.18); border-bottom-color: rgba(192,57,43,0.2);
+}
+.section-errores .error-wrong .label { color: #e87070; }
+.section-errores .error-wrong p { color: rgba(255,255,255,0.85); }
+.section-errores .error-right { background: rgba(62,107,32,0.22); }
+.section-errores .error-right .label { color: #88c462; }
+.section-errores .error-right p { color: rgba(255,255,255,0.80); }
+.section-errores .error-right p strong { color: var(--gold-l); }
+
+/* ─── REFERENCE FILTER CHIPS ─── */
+.ref-filters {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.2rem;
+}
+.ref-filter {
+  font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 3px; cursor: pointer;
+  background: var(--white); border: 1.5px solid var(--rule);
+  color: var(--ink-m); transition: all var(--t);
+}
+.ref-filter:hover { border-color: var(--green-m); color: var(--green-m); }
+.ref-filter.active { background: var(--green); border-color: var(--green); color: var(--white); }
+
+/* ─── IMPROVED HERO STAT BAR ─── */
+@media(min-width:768px) {
+  .hero-stat-bar { grid-template-columns: repeat(4,1fr); gap: 0; }
+  .hero-stat { border-right: 1px solid rgba(255,255,255,0.1); padding-right: 2rem; padding-left: 2rem; }
+  .hero-stat:first-child { padding-left: 0; }
+  .hero-stat:last-child { border-right: none; }
+}
 </style>
 </head>
 <body>
+
+<div id="progress-bar" aria-hidden="true"></div>
+
+<nav class="section-dots" aria-label="Navegación de secciones" aria-hidden="true">
+  <a href="#inicio"      class="s-dot" data-section="inicio"><span class="dot-tip">Inicio</span></a>
+  <a href="#que-es"      class="s-dot" data-section="que-es"><span class="dot-tip">¿Qué es?</span></a>
+  <a href="#problema"    class="s-dot" data-section="problema"><span class="dot-tip">El Problema</span></a>
+  <a href="#metodos"     class="s-dot" data-section="metodos"><span class="dot-tip">Control</span></a>
+  <a href="#prevencion"  class="s-dot" data-section="prevencion"><span class="dot-tip">Prevención</span></a>
+  <a href="#errores"     class="s-dot" data-section="errores"><span class="dot-tip">Errores</span></a>
+  <a href="#faq"         class="s-dot" data-section="faq"><span class="dot-tip">FAQ</span></a>
+  <a href="#unete"       class="s-dot" data-section="unete"><span class="dot-tip">Únete</span></a>
+  <a href="#referencias" class="s-dot" data-section="referencias"><span class="dot-tip">Referencias</span></a>
+</nav>
 
 <!-- ═══════════════════════════════════ NAVBAR ═══════════════════════════════════ -->
 <nav id="navbar" role="navigation" aria-label="Navegación principal">
@@ -907,24 +1094,127 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
     <ellipse cx="250" cy="200" rx="40" ry="70" fill="white" opacity="0.25" transform="rotate(15 250 200)"/>
   </svg>
   <div class="hero-content">
-    <p class="hero-eyebrow">Guía de Manejo Científico · Hidalgo, México</p>
-    <h1>El <em>Heno Motita</em> Amenaza Nuestros Mezquites</h1>
-    <p class="hero-sub">Información científica validada para el control y prevención de <em>Tillandsia recurvata</em> en el Valle del Mezquital. Basada en investigaciones de INIFAP, UTTT, UNAM y publicaciones internacionales.</p>
-    <div class="hero-badges" role="list">
-      <span class="hero-badge" role="listitem">Tula de Allende</span>
-      <span class="hero-badge" role="listitem">Tepeji del Río</span>
-      <span class="hero-badge" role="listitem">Ixmiquilpan</span>
-      <span class="hero-badge" role="listitem">Cardonal</span>
-      <span class="hero-badge" role="listitem">Tecozautla</span>
-    </div>
-    <div class="hero-btns">
-      <a href="#metodos" class="btn btn-primary">Ver Métodos de Control →</a>
-      <a href="#unete" class="btn btn-outline">Únete a una Brigada</a>
+    <div class="hero-split">
+      <div>
+        <p class="hero-eyebrow">Guía de Manejo Científico · Hidalgo, México</p>
+        <h1>El <em>Heno Motita</em> Amenaza Nuestros Mezquites</h1>
+        <p class="hero-sub">Información científica validada para el control y prevención de <em>Tillandsia recurvata</em> en el Valle del Mezquital&#8202;— basada en investigaciones de INIFAP, UTTT, UNAM y publicaciones revisadas por pares.</p>
+        <div class="hero-badges" role="list">
+          <span class="hero-badge" role="listitem">Tula de Allende</span>
+          <span class="hero-badge" role="listitem">Tepeji del Río</span>
+          <span class="hero-badge" role="listitem">Ixmiquilpan</span>
+          <span class="hero-badge" role="listitem">Cardonal</span>
+          <span class="hero-badge" role="listitem">Tecozautla</span>
+        </div>
+        <div class="hero-btns">
+          <a href="#metodos" class="btn btn-primary">Ver Métodos de Control →</a>
+          <a href="#unete" class="btn btn-outline">Únete a una Brigada</a>
+        </div>
+      </div>
+      <div class="hero-illustration" aria-hidden="true">
+        <!-- Botanical plate: Tillandsia recurvata on Prosopis laevigata branch -->
+        <svg class="hero-botanical" viewBox="0 0 460 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Main mesquite branch -->
+          <path d="M 50 510 C 110 455 155 398 195 338 C 240 272 288 212 362 152 C 394 128 424 100 448 68" stroke="rgba(255,255,255,0.82)" stroke-width="5.5" stroke-linecap="round"/>
+          <!-- Secondary branch from fork -->
+          <path d="M 195 338 C 228 316 265 300 305 286 C 340 274 372 260 400 242" stroke="rgba(255,255,255,0.70)" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- Small twig 1 -->
+          <path d="M 290 210 C 272 194 260 180 252 163" stroke="rgba(255,255,255,0.52)" stroke-width="2.2" stroke-linecap="round"/>
+          <!-- Small twig 2 -->
+          <path d="M 362 152 C 346 138 335 124 332 107" stroke="rgba(255,255,255,0.48)" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- BALL 1 — large, lower main branch (center 82,462) -->
+          <circle cx="82" cy="462" r="38" stroke="rgba(255,255,255,0.14)" stroke-width="1" stroke-dasharray="3,4"/>
+          <path d="M 82 462 C 78 447 75 434 76 422" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 86 447 89 434 88 422" stroke="rgba(255,255,255,0.82)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 70 454 58 448 47 449" stroke="rgba(255,255,255,0.76)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 94 454 106 448 117 449" stroke="rgba(255,255,255,0.76)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 66 460 53 460 43 464" stroke="rgba(255,255,255,0.70)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 98 460 111 460 121 464" stroke="rgba(255,255,255,0.70)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 68 470 57 476 48 480" stroke="rgba(255,255,255,0.64)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 96 470 107 476 116 480" stroke="rgba(255,255,255,0.64)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 75 476 72 488 74 498" stroke="rgba(255,255,255,0.58)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 89 476 92 488 90 498" stroke="rgba(255,255,255,0.58)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 82 462 C 63 464 52 468 44 474" stroke="rgba(255,255,255,0.58)" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M 82 462 C 101 464 112 468 120 474" stroke="rgba(255,255,255,0.58)" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="82" cy="462" r="6" stroke="rgba(255,255,255,0.38)" stroke-width="1"/>
+          <!-- rhizoid to branch -->
+          <path d="M 82 424 C 100 404 120 390 130 376" stroke="rgba(255,255,255,0.30)" stroke-width="0.9" stroke-dasharray="2,3"/>
+          <!-- BALL 2 — medium, at fork (center 174,382) -->
+          <circle cx="174" cy="382" r="28" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" stroke-dasharray="2.5,3.5"/>
+          <path d="M 174 382 C 171 371 169 361 170 351" stroke="rgba(255,255,255,0.80)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 177 371 179 361 178 351" stroke="rgba(255,255,255,0.80)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 164 376 155 372 147 373" stroke="rgba(255,255,255,0.74)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 184 376 193 372 201 373" stroke="rgba(255,255,255,0.74)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 161 380 151 381 143 385" stroke="rgba(255,255,255,0.68)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 187 380 197 381 205 385" stroke="rgba(255,255,255,0.68)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 163 390 155 396 149 399" stroke="rgba(255,255,255,0.62)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 185 390 193 396 199 399" stroke="rgba(255,255,255,0.62)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 170 394 168 403 170 411" stroke="rgba(255,255,255,0.56)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 174 382 C 178 394 180 403 178 411" stroke="rgba(255,255,255,0.56)" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="174" cy="382" r="4.5" stroke="rgba(255,255,255,0.36)" stroke-width="0.9"/>
+          <path d="M 174 354 C 185 344 195 338 195 338" stroke="rgba(255,255,255,0.28)" stroke-width="0.8" stroke-dasharray="1.5,2.5"/>
+          <!-- BALL 3 — small, upper main branch (center 276,250) -->
+          <circle cx="276" cy="250" r="22" stroke="rgba(255,255,255,0.11)" stroke-width="0.8" stroke-dasharray="2,3"/>
+          <path d="M 276 250 C 274 241 272 233 273 225" stroke="rgba(255,255,255,0.78)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 278 241 280 233 279 225" stroke="rgba(255,255,255,0.78)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 267 245 259 242 252 244" stroke="rgba(255,255,255,0.72)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 285 245 293 242 300 244" stroke="rgba(255,255,255,0.72)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 265 248 256 249 250 252" stroke="rgba(255,255,255,0.66)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 287 248 296 249 302 252" stroke="rgba(255,255,255,0.66)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 267 258 260 263 254 266" stroke="rgba(255,255,255,0.60)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 285 258 292 263 298 266" stroke="rgba(255,255,255,0.60)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 273 261 272 269 273 277" stroke="rgba(255,255,255,0.54)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 276 250 C 279 261 280 269 279 277" stroke="rgba(255,255,255,0.54)" stroke-width="1.1" stroke-linecap="round"/>
+          <circle cx="276" cy="250" r="3.8" stroke="rgba(255,255,255,0.33)" stroke-width="0.8"/>
+          <!-- BALL 4 — tiny, secondary branch (center 344,280) -->
+          <circle cx="344" cy="280" r="17" stroke="rgba(255,255,255,0.10)" stroke-width="0.7" stroke-dasharray="2,3"/>
+          <path d="M 344 280 C 342 272 341 265 342 258" stroke="rgba(255,255,255,0.74)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 346 272 347 265 346 258" stroke="rgba(255,255,255,0.74)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 336 276 329 273 323 275" stroke="rgba(255,255,255,0.68)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 352 276 359 273 365 275" stroke="rgba(255,255,255,0.68)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 334 278 326 279 320 283" stroke="rgba(255,255,255,0.62)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 354 278 362 279 368 283" stroke="rgba(255,255,255,0.62)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 336 287 330 292 325 295" stroke="rgba(255,255,255,0.56)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 352 287 358 292 363 295" stroke="rgba(255,255,255,0.56)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 342 289 341 296 342 302" stroke="rgba(255,255,255,0.50)" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 344 280 C 346 289 347 296 346 302" stroke="rgba(255,255,255,0.50)" stroke-width="1" stroke-linecap="round"/>
+          <circle cx="344" cy="280" r="3" stroke="rgba(255,255,255,0.30)" stroke-width="0.7"/>
+          <!-- Mesquite bipinnate leaves — node 1 (~148,388) -->
+          <path d="M 148 388 L 130 372" stroke="rgba(255,255,255,0.60)" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M 138 381 L 130 374 M 138 381 L 130 388" stroke="rgba(255,255,255,0.50)" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M 133 376 L 124 369 M 133 376 L 124 383" stroke="rgba(255,255,255,0.47)" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M 130 374 L 122 370 M 126 376 L 118 374" stroke="rgba(255,255,255,0.35)" stroke-width="0.65" stroke-linecap="round"/>
+          <path d="M 130 388 L 122 385 M 126 390 L 118 390" stroke="rgba(255,255,255,0.35)" stroke-width="0.65" stroke-linecap="round"/>
+          <!-- Mesquite leaves — node 2 (~362,152) -->
+          <path d="M 362 152 L 378 138" stroke="rgba(255,255,255,0.54)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M 368 148 L 376 142 M 368 148 L 376 154" stroke="rgba(255,255,255,0.45)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M 373 144 L 380 138 M 373 144 L 380 150" stroke="rgba(255,255,255,0.42)" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M 376 142 L 382 139 M 378 144 L 384 143" stroke="rgba(255,255,255,0.30)" stroke-width="0.6" stroke-linecap="round"/>
+          <!-- Dispersing seed with plume (top right) -->
+          <ellipse cx="432" cy="44" rx="5" ry="9" stroke="rgba(255,255,255,0.62)" stroke-width="1" transform="rotate(-28 432 44)"/>
+          <path d="M 432 44 C 437 34 442 26 446 18" stroke="rgba(255,255,255,0.52)" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M 432 44 C 434 32 434 23 430 15" stroke="rgba(255,255,255,0.47)" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M 432 44 C 426 33 422 25 420 17" stroke="rgba(255,255,255,0.43)" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M 432 44 C 439 36 444 29 447 22" stroke="rgba(255,255,255,0.38)" stroke-width="0.7" stroke-linecap="round"/>
+          <path d="M 432 44 C 420 36 416 29 414 22" stroke="rgba(255,255,255,0.38)" stroke-width="0.7" stroke-linecap="round"/>
+          <!-- Annotation labels -->
+          <text x="128" y="428" font-family="Georgia,serif" font-style="italic" font-size="9.5" fill="rgba(255,255,255,0.48)">T. recurvata</text>
+          <line x1="120" y1="432" x2="104" y2="448" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"/>
+          <text x="238" y="316" font-family="Georgia,serif" font-style="italic" font-size="9.5" fill="rgba(255,255,255,0.42)">P. laevigata</text>
+          <line x1="232" y1="310" x2="218" y2="300" stroke="rgba(255,255,255,0.20)" stroke-width="0.7"/>
+          <text x="445" y="36" font-family="Georgia,serif" font-style="italic" font-size="8.5" fill="rgba(255,255,255,0.40)" text-anchor="end">semilla</text>
+          <!-- Scale bar -->
+          <line x1="358" y1="507" x2="408" y2="507" stroke="rgba(255,255,255,0.36)" stroke-width="1"/>
+          <line x1="358" y1="502" x2="358" y2="512" stroke="rgba(255,255,255,0.36)" stroke-width="1"/>
+          <line x1="408" y1="502" x2="408" y2="512" stroke="rgba(255,255,255,0.36)" stroke-width="1"/>
+          <text x="383" y="520" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="8.5" fill="rgba(255,255,255,0.32)">5 cm</text>
+        </svg>
+      </div>
     </div>
     <div class="hero-stat-bar">
       <div class="hero-stat">
-        <div class="num">~200</div>
-        <div class="lbl">hectáreas de mezquite perdidas</div>
+        <div class="num">1,200 ha</div>
+        <div class="lbl">afectadas en zona Tula-Tepeji (CONAFOR 2018)</div>
       </div>
       <div class="hero-stat">
         <div class="num">84</div>
@@ -932,7 +1222,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
       <div class="hero-stat">
         <div class="num">&lt;1 año</div>
-        <div class="lbl">velocidad de reinfestación sin control</div>
+        <div class="lbl">reinfestación sin control continuo</div>
       </div>
       <div class="hero-stat">
         <div class="num">86%</div>
@@ -943,13 +1233,14 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ QUÉ ES ═══════════════════════════════════ -->
-<section id="que-es" class="section">
+<section id="que-es" class="section" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">I</div>
     <div class="section-header reveal">
       <div class="badge-science">Biología y Ecología</div>
       <h2>¿Qué es el Heno Motita?</h2>
       <div class="divider"></div>
-      <p>Conocida también como <em>paxtle</em>, <em>gallitos</em> o <em>ball moss</em>. Una planta notable, pero destructiva en alta densidad.</p>
+      <p class="drop-cap">Conocida también como <em>paxtle</em>, <em>gallitos</em> o <em>ball moss</em>. Una planta notable, pero destructiva en alta densidad.</p>
     </div>
 
     <div class="cards-grid four reveal">
@@ -986,23 +1277,64 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ EL PROBLEMA ═══════════════════════════════════ -->
-<section id="problema" class="section section-alt">
+<section id="problema" class="section" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">II</div>
     <div class="section-header reveal">
       <div class="badge-science">Impacto Regional</div>
       <h2>El Problema en Nuestra Región</h2>
       <div class="divider"></div>
-      <p>El Valle del Mezquital concentra el daño más documentado de heno motita en el Altiplano Central de México.</p>
+      <p class="sh-lead">El Valle del Mezquital concentra el daño más documentado de <em>Tillandsia recurvata</em> en el Altiplano Central de México.</p>
     </div>
 
     <div class="two-col reveal">
       <div>
-        <div class="stat-highlight">
-          <div class="big-num">1,200 ha</div>
-          <p>afectadas en la zona industrial Tula-Tepeji<br><small>Fuente: CONAFOR 2018, citado en Reséndiz-Vega &amp; Sánchez-Trujillo (UTTT, 2021)</small></p>
+        <div class="map-container">
+          <h4>Municipios prioritarios — Valle del Mezquital, Hidalgo</h4>
+          <svg viewBox="0 0 360 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+            <path d="M 50 248 C 55 233 60 218 68 208 C 76 198 90 192 100 182 C 113 169 120 156 130 144 C 143 129 156 115 170 102 C 183 90 200 82 216 78 C 236 72 254 72 270 78 C 287 84 300 96 310 110 C 320 122 323 138 320 152 C 317 165 310 175 299 185 C 284 198 265 207 247 217 C 230 226 212 233 194 239 C 174 245 152 249 130 251 C 110 253 78 254 50 248 Z" fill="rgba(90,143,50,0.08)" stroke="rgba(90,143,50,0.35)" stroke-width="1.5"/>
+            <path d="M 92 208 C 118 194 143 184 168 177 C 196 170 218 168 244 162" stroke="rgba(100,170,210,0.40)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 168 102 C 172 128 174 155 172 177" stroke="rgba(100,170,210,0.32)" stroke-width="1" stroke-linecap="round"/>
+            <!-- Tula de Allende -->
+            <circle cx="98" cy="213" r="20" fill="rgba(184,116,26,0.07)"/>
+            <circle cx="98" cy="213" r="12" fill="rgba(184,116,26,0.14)"/>
+            <circle cx="98" cy="213" r="6" fill="rgba(184,116,26,0.50)"/>
+            <circle cx="98" cy="213" r="3.5" fill="#D4922C"/>
+            <text x="98" y="236" text-anchor="middle" font-family="'Raleway',sans-serif" font-size="8" font-weight="700" fill="rgba(255,255,255,0.80)" letter-spacing="0.05em">TULA</text>
+            <!-- Tepeji del Río -->
+            <circle cx="70" cy="235" r="15" fill="rgba(184,116,26,0.07)"/>
+            <circle cx="70" cy="235" r="9" fill="rgba(184,116,26,0.16)"/>
+            <circle cx="70" cy="235" r="4.5" fill="rgba(184,116,26,0.55)"/>
+            <circle cx="70" cy="235" r="2.8" fill="#D4922C"/>
+            <text x="70" y="253" text-anchor="middle" font-family="'Raleway',sans-serif" font-size="7.5" font-weight="700" fill="rgba(255,255,255,0.72)" letter-spacing="0.04em">TEPEJI</text>
+            <!-- Ixmiquilpan -->
+            <circle cx="178" cy="146" r="17" fill="rgba(90,143,50,0.07)"/>
+            <circle cx="178" cy="146" r="10" fill="rgba(90,143,50,0.15)"/>
+            <circle cx="178" cy="146" r="5" fill="rgba(90,143,50,0.52)"/>
+            <circle cx="178" cy="146" r="3" fill="#5A8F32"/>
+            <text x="178" y="165" text-anchor="middle" font-family="'Raleway',sans-serif" font-size="8" font-weight="700" fill="rgba(255,255,255,0.76)" letter-spacing="0.04em">IXMIQUILPAN</text>
+            <!-- Cardonal -->
+            <circle cx="218" cy="98" r="13" fill="rgba(90,143,50,0.07)"/>
+            <circle cx="218" cy="98" r="7.5" fill="rgba(90,143,50,0.14)"/>
+            <circle cx="218" cy="98" r="4" fill="rgba(90,143,50,0.50)"/>
+            <circle cx="218" cy="98" r="2.5" fill="#5A8F32"/>
+            <text x="218" y="115" text-anchor="middle" font-family="'Raleway',sans-serif" font-size="7.5" font-weight="700" fill="rgba(255,255,255,0.70)" letter-spacing="0.04em">CARDONAL</text>
+            <!-- Tecozautla -->
+            <circle cx="84" cy="138" r="12" fill="rgba(90,143,50,0.06)"/>
+            <circle cx="84" cy="138" r="7" fill="rgba(90,143,50,0.12)"/>
+            <circle cx="84" cy="138" r="3.5" fill="rgba(90,143,50,0.48)"/>
+            <circle cx="84" cy="138" r="2.2" fill="#5A8F32"/>
+            <text x="84" y="155" text-anchor="middle" font-family="'Raleway',sans-serif" font-size="7.5" font-weight="700" fill="rgba(255,255,255,0.68)" letter-spacing="0.04em">TECOZAUTLA</text>
+            <!-- Legend -->
+            <circle cx="16" cy="18" r="4" fill="#D4922C" opacity="0.85"/>
+            <text x="25" y="22" font-family="'Raleway',sans-serif" font-size="7.5" font-weight="600" fill="rgba(255,255,255,0.58)">Alta severidad</text>
+            <circle cx="16" cy="33" r="4" fill="#5A8F32" opacity="0.85"/>
+            <text x="25" y="37" font-family="'Raleway',sans-serif" font-size="7.5" font-weight="600" fill="rgba(255,255,255,0.58)">Severidad media</text>
+            <text x="355" y="274" text-anchor="end" font-family="'Raleway',sans-serif" font-size="7.5" fill="rgba(255,255,255,0.35)" font-weight="600" letter-spacing="0.06em">HIDALGO · MÉXICO</text>
+          </svg>
         </div>
         <div class="inset-box">
-          <h4 style="color:var(--green-dark);margin-bottom:0.8rem;">Municipios afectados</h4>
+          <h4 style="margin-bottom:0.8rem;">Municipios afectados</h4>
           <div class="municipios-grid">
             <span class="muni-tag">Tula de Allende</span>
             <span class="muni-tag">Tepeji del Río</span>
@@ -1013,7 +1345,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
           </div>
         </div>
         <div class="inset-box" style="margin-top:1rem;">
-          <h4 style="color:var(--green-dark);margin-bottom:0.8rem;">Árboles hospederos</h4>
+          <h4 style="color:var(--green);margin-bottom:0.8rem;">Árboles hospederos</h4>
           <ul class="damage-list">
             <li><strong>Mezquite</strong> (<em>Prosopis laevigata</em>) — hospedero primario, más vulnerable</li>
             <li><strong>Huizache</strong> (<em>Vachellia farnesiana</em>) — corteza rugosa, muy susceptible</li>
@@ -1023,22 +1355,27 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
         </div>
       </div>
       <div>
-        <h3 style="color:var(--green-dark);margin-bottom:1.2rem;">Cómo daña al árbol</h3>
+        <h3 style="color:var(--green);margin-bottom:1.2rem;">Cómo daña al árbol</h3>
         <ul class="damage-list">
           <li><strong>Modifica xilema y floema:</strong> Reduce los vasos conductores de agua y azúcares. El árbol pierde eficiencia hidráulica.</li>
           <li><strong>Umbral crítico (≥50% cobertura):</strong> A partir de ese punto, la mortalidad de brotes es estadísticamente significativa. <cite>Flores-Palacios et al. 2014</cite></li>
           <li><strong>Alelopatía:</strong> Libera compuestos que inhiben la germinación y crecimiento de plántulas de mezquite.</li>
-          <li><strong>Amplificación por sequía:</strong> En condiciones de estrés hídrico, T. recurvata extrae agua activamente del hospedero, convirtiéndose en parásita real. <cite>ScienceDirect 2021</cite></li>
+          <li><strong>Amplificación por sequía:</strong> En condiciones de estrés hídrico, <em>T. recurvata</em> extrae agua activamente del hospedero, convirtiéndose en parásita real. <cite>ScienceDirect 2021</cite></li>
           <li><strong>Daño acumulado:</strong> Los individuos reproductivos causan mayor daño anatómico que los vegetativos. Atacar adultos primero tiene el mayor impacto.</li>
         </ul>
+
+        <blockquote class="pull-quote">
+          <p>«A partir del 50% de cobertura de la rama, la mortalidad de brotes es estadísticamente significativa.»</p>
+          <cite>Flores-Palacios et al. (2014) &#8212; <em>Journal of Arid Environments</em></cite>
+        </blockquote>
 
         <div class="warning-box" role="alert">
           <h4>⚠️ Zona industrial Tula-Tepeji</h4>
           <p>El heno motita acumula metales pesados (Pb, Cd) en sus tricomas hasta <strong>40× más concentrado</strong> que en zonas agrícolas. El material removido en esta zona <strong>NO debe usarse como forraje o composta</strong> sin análisis de metales. <cite>(ACP 2009 — Atmospheric Chemistry and Physics)</cite></p>
         </div>
 
-        <div class="inset-box" style="margin-top:1rem; background: #FFF8E6; border-color: var(--accent);">
-          <h4 style="color:var(--accent);margin-bottom:0.5rem;">Sin control, vuelve en menos de 1 año</h4>
+        <div class="inset-box" style="margin-top:1rem; background: #FFF8E6; border-color: var(--ochre);">
+          <h4 style="color:var(--ochre);margin-bottom:0.5rem;">Sin control, vuelve en menos de 1 año</h4>
           <p style="font-size:0.88rem;">La reinfestación desde árboles vecinos no tratados ocurre en menos de 12 meses. Esto hace imprescindible el <strong>manejo coordinado a escala de ejido o barrio</strong>, no solo árbol por árbol.</p>
         </div>
       </div>
@@ -1047,8 +1384,9 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ MÉTODOS ═══════════════════════════════════ -->
-<section id="metodos" class="section">
+<section id="metodos" class="section" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">III</div>
     <div class="section-header reveal">
       <div class="badge-science">Métodos Validados</div>
       <h2>Métodos de Control</h2>
@@ -1058,26 +1396,26 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 
     <div class="tabs-wrapper reveal">
       <div class="tab-buttons" role="tablist">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-mecanico" data-tab="mecanico">🔧 Mecánico</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-quimico" data-tab="quimico">🧪 Químico</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-estacional" data-tab="estacional">📅 Estacional</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-biologico" data-tab="biologico">🐛 Biológico</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-restauracion" data-tab="restauracion">🌳 Restauración</button>
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-mecanico" data-tab="mecanico"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M 4 16 L 15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M 15 5 C 15 5 18 4.5 17.5 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="5" cy="15" r="2" stroke="currentColor" stroke-width="1.5"/></svg> Mecánico</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-quimico" data-tab="quimico"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="6" y="9" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M 9 9 L 9 6 L 12 6 L 14.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><line x1="15.5" y1="2.5" x2="17" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Químico</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-estacional" data-tab="estacional"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="5" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.5"/><line x1="7" y1="3" x2="7" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="3" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="3" y1="10" x2="17" y2="10" stroke="currentColor" stroke-width="1.2"/><circle cx="10" cy="14" r="2" fill="currentColor" opacity="0.85"/></svg> Estacional</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-biologico" data-tab="biologico"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M 5 17 C 5 17 3.5 9 10 4.5 C 16.5 9 15 17 15 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><line x1="10" y1="17" x2="10" y2="4.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/><path d="M 10 11 L 7.5 8.5 M 10 11 L 12.5 8.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.6"/></svg> Biológico</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-restauracion" data-tab="restauracion"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><polygon points="10,2.5 15,10 5,10" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/><polygon points="10,6.5 14.5,13.5 5.5,13.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/><rect x="9" y="13.5" width="2" height="4" rx="0.5" fill="currentColor" opacity="0.7"/></svg> Restauración</button>
       </div>
 
       <!-- MECÁNICO -->
       <div class="tab-pane active" id="tab-mecanico" role="tabpanel">
         <div class="method-header">
-          <div class="method-icon" style="background:var(--green-soft);">🔧</div>
+          <div class="method-icon" style="background:var(--sand);"><svg width="26" height="26" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M 3 17 L 15 5" stroke="#2D5016" stroke-width="2" stroke-linecap="round"/><path d="M 15 5 C 15 5 18.5 4.5 17.8 7.8" stroke="#2D5016" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="4" cy="16" r="2.5" stroke="#2D5016" stroke-width="1.5"/></svg></div>
           <div>
-            <h3 style="color:var(--green-dark);">Control Mecánico</h3>
-            <p style="color:var(--text-muted); font-size:0.92rem;">Recomendado para brigadas comunitarias. El método más económico según INIFAP y tan efectivo como la poda.</p>
+            <h3 style="color:var(--green);">Control Mecánico</h3>
+            <p style="color:var(--ink-l); font-size:0.92rem;">Recomendado para brigadas comunitarias. El método más económico según INIFAP y tan efectivo como la poda.</p>
           </div>
         </div>
 
         <div class="two-col">
           <div>
-            <h4 style="margin-bottom:0.8rem;color:var(--green-dark);">Método con varilla corrugada</h4>
+            <h4 style="margin-bottom:0.8rem;color:var(--green);">Método con varilla corrugada</h4>
             <ul class="steps-list">
               <li>Consigue una <strong>varilla de acero corrugada de 3/8" de diámetro</strong>, de 2 a 3 metros de largo, con la punta doblada en forma de gancho.</li>
               <li>Inserta el gancho entre el cúmulo de heno motita y la rama del árbol.</li>
@@ -1090,8 +1428,8 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
             </div>
           </div>
           <div>
-            <h4 style="margin-bottom:0.8rem;color:var(--green-dark);">Poda de ramas infestadas</h4>
-            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:0.8rem;">Para ramas con más del 50% de cobertura o con señales visibles de dieback (muerte de extremidades).</p>
+            <h4 style="margin-bottom:0.8rem;color:var(--green);">Poda de ramas infestadas</h4>
+            <p style="font-size:0.9rem; color:var(--ink-l); margin-bottom:0.8rem;">Para ramas con más del 50% de cobertura o con señales visibles de dieback (muerte de extremidades).</p>
             <ul class="steps-list">
               <li>Identifica ramas con &gt;50% cobertura o ramas ya secas.</li>
               <li>Poda con herramienta afilada y limpia en el punto de unión con el tronco.</li>
@@ -1099,8 +1437,8 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
               <li>Transporta las ramas en <strong>bolsa sellada</strong> al sitio de quema. No arrastrar por el suelo.</li>
               <li>Quema controlada del material.</li>
             </ul>
-            <div class="tip-box" style="background:var(--accent-pale); border-color:rgba(196,134,42,0.25);">
-              <strong style="color:var(--accent);">Costo comparativo (INIFAP):</strong> La extracción con varilla corrugada es <strong>más económica</strong> que la poda, con efectividad equivalente. Ideal para brigadas con recursos limitados.
+            <div class="tip-box" style="background:#F8EDD8; border-color:rgba(196,134,42,0.25);">
+              <strong style="color:var(--ochre);">Costo comparativo (INIFAP):</strong> La extracción con varilla corrugada es <strong>más económica</strong> que la poda, con efectividad equivalente. Ideal para brigadas con recursos limitados.
             </div>
           </div>
         </div>
@@ -1109,10 +1447,10 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       <!-- QUÍMICO -->
       <div class="tab-pane" id="tab-quimico" role="tabpanel">
         <div class="method-header">
-          <div class="method-icon" style="background:var(--accent-pale);">🧪</div>
+          <div class="method-icon" style="background:#F8EDD8;"><svg width="26" height="26" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="6" y="9" width="8" height="9" rx="1.5" stroke="#B8741A" stroke-width="1.5"/><path d="M 9 9 L 9 6 L 12 6 L 14.5 3.5" stroke="#B8741A" stroke-width="1.5" stroke-linecap="round" fill="none"/><line x1="15.5" y1="2.5" x2="17" y2="4" stroke="#B8741A" stroke-width="1.5" stroke-linecap="round"/></svg></div>
           <div>
-            <h3 style="color:var(--green-dark);">Control Químico</h3>
-            <p style="color:var(--text-muted); font-size:0.92rem;">El tratamiento químico <strong>solo tiene efecto temporal</strong>. Siempre debe combinarse con remoción mecánica.</p>
+            <h3 style="color:var(--green);">Control Químico</h3>
+            <p style="color:var(--ink-l); font-size:0.92rem;">El tratamiento químico <strong>solo tiene efecto temporal</strong>. Siempre debe combinarse con remoción mecánica.</p>
           </div>
         </div>
 
@@ -1155,7 +1493,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 
         <div class="two-col" style="margin-top:1.4rem;">
           <div>
-            <h4 style="margin-bottom:0.8rem;color:var(--green-dark);">Protocolo de aplicación (bicarbonato)</h4>
+            <h4 style="margin-bottom:0.8rem;color:var(--green);">Protocolo de aplicación (bicarbonato)</h4>
             <ul class="steps-list">
               <li>Disuelve completamente el bicarbonato en agua antes de cargar la aspersora.</li>
               <li><strong>Agita constantemente</strong> durante la aplicación para evitar que el material sedimente y tape la boquilla.</li>
@@ -1166,7 +1504,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
           </div>
           <div>
             <div class="tip-box" style="background:#FFF8E6; border-color:rgba(196,134,42,0.3); margin-bottom:1rem;">
-              <strong style="color:var(--accent);">El musgo muerto no cae de inmediato — eso es NORMAL</strong><br>
+              <strong style="color:var(--ochre);">El musgo muerto no cae de inmediato — eso es NORMAL</strong><br>
               <span style="font-size:0.88rem;">Las plantas muertas pueden permanecer adheridas entre <strong>18 meses y 10 años</strong> antes de desprenderse. Si el material se ve seco y grisáceo-oscuro después del tratamiento, el método funcionó. No vuelvas a aplicar innecesariamente.</span>
             </div>
             <div class="warning-box">
@@ -1180,10 +1518,10 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       <!-- ESTACIONAL -->
       <div class="tab-pane" id="tab-estacional" role="tabpanel">
         <div class="method-header">
-          <div class="method-icon" style="background:#EFF4FF;">📅</div>
+          <div class="method-icon" style="background:#EFF4FF;"><svg width="26" height="26" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="5" width="14" height="13" rx="1.5" stroke="#4470D0" stroke-width="1.5"/><line x1="7" y1="3" x2="7" y2="7" stroke="#4470D0" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="3" x2="13" y2="7" stroke="#4470D0" stroke-width="1.5" stroke-linecap="round"/><line x1="3" y1="10" x2="17" y2="10" stroke="#4470D0" stroke-width="1.2"/><circle cx="10" cy="14" r="2.2" fill="#4470D0" opacity="0.85"/></svg></div>
           <div>
-            <h3 style="color:var(--green-dark);">Control Estacional — Cuándo actuar</h3>
-            <p style="color:var(--text-muted); font-size:0.92rem;">La sincronía con la fenología de T. recurvata es la diferencia entre un tratamiento efectivo y uno que se pierde.</p>
+            <h3 style="color:var(--green);">Control Estacional — Cuándo actuar</h3>
+            <p style="color:var(--ink-l); font-size:0.92rem;">La sincronía con la fenología de T. recurvata es la diferencia entre un tratamiento efectivo y uno que se pierde.</p>
           </div>
         </div>
 
@@ -1214,21 +1552,21 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       <!-- BIOLÓGICO -->
       <div class="tab-pane" id="tab-biologico" role="tabpanel">
         <div class="method-header">
-          <div class="method-icon" style="background:var(--green-soft);">🐛</div>
+          <div class="method-icon" style="background:#EBF3E0;"><svg width="26" height="26" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M 5 17 C 5 17 3 9 10 4 C 17 9 15 17 15 17" stroke="#2D5016" stroke-width="1.5" stroke-linecap="round" fill="none"/><line x1="10" y1="17" x2="10" y2="4" stroke="#2D5016" stroke-width="1" stroke-linecap="round" opacity="0.55"/><path d="M 10 11 L 7 8 M 10 11 L 13 8" stroke="#2D5016" stroke-width="1" stroke-linecap="round" opacity="0.55"/></svg></div>
           <div>
-            <h3 style="color:var(--green-dark);">Control Biológico</h3>
-            <p style="color:var(--text-muted); font-size:0.92rem;">Situación actual de la investigación y hallazgos de la región.</p>
+            <h3 style="color:var(--green);">Control Biológico</h3>
+            <p style="color:var(--ink-l); font-size:0.92rem;">Situación actual de la investigación y hallazgos de la región.</p>
           </div>
         </div>
 
         <div class="two-col">
           <div>
-            <div class="warning-box" style="border-color:var(--green-mid); background:var(--green-soft);">
-              <h4 style="color:var(--green-dark);">Estado actual: sin agente validado</h4>
+            <div class="warning-box" style="border-color:var(--green-m); background:var(--sand);">
+              <h4 style="color:var(--green);">Estado actual: sin agente validado</h4>
               <p style="font-size:0.9rem;">No existe ningún hongo, insecto ni nematodo desarrollado y validado específicamente para controlar <em>T. recurvata</em>. Esta es una brecha de investigación reconocida en la literatura científica internacional.</p>
             </div>
             <div class="inset-box" style="margin-top:1rem;">
-              <h4 style="color:var(--green-dark);margin-bottom:0.7rem;">Candidatos bajo investigación</h4>
+              <h4 style="color:var(--green);margin-bottom:0.7rem;">Candidatos bajo investigación</h4>
               <ul class="damage-list" style="font-size:0.88rem;">
                 <li>Trips (<em>Frankliniella</em> spp.): herbívoros en flores de Tillandsia, efecto supresivo no cuantificado</li>
                 <li>Hongos fitopatógenos (<em>Colletotrichum, Alternaria</em>): aislados en Tillandsia ornamentales, no en campo</li>
@@ -1241,15 +1579,15 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
               <div style="display:flex;gap:0.8rem;align-items:flex-start;">
                 <div class="alert-icon">💡</div>
                 <div>
-                  <h4 style="color:var(--accent);">Hallazgo UTTT — Uso inverso de la biomasa</h4>
+                  <h4 style="color:var(--ochre);">Hallazgo UTTT — Uso inverso de la biomasa</h4>
                   <p style="font-size:0.88rem;">Investigadores de la Universidad Tecnológica Tula-Tepeji descubrieron que <strong>extractos de heno motita inhiben hongos fitopatógenos</strong> en cultivos (oidio/cenicilla). La especie es simultáneamente plaga forestal y recurso fitoquímico potencial.</p>
                 </div>
               </div>
-              <p style="font-size:0.83rem; color:var(--text-muted); margin:0.8rem 0 0; padding-top:0.8rem; border-top:1px solid rgba(196,134,42,0.2);">Esto significa que la biomasa removida en campañas mecánicas <strong>tiene valor</strong> como fuente de extractos bioactivos — un incentivo económico adicional para las brigadas.</p>
+              <p style="font-size:0.83rem; color:var(--ink-l); margin:0.8rem 0 0; padding-top:0.8rem; border-top:1px solid rgba(196,134,42,0.2);">Esto significa que la biomasa removida en campañas mecánicas <strong>tiene valor</strong> como fuente de extractos bioactivos — un incentivo económico adicional para las brigadas.</p>
             </div>
             <div class="inset-box" style="margin-top:1rem;">
-              <h4 style="color:var(--green-dark);margin-bottom:0.5rem;">Investigación activa en la región</h4>
-              <p style="font-size:0.88rem; color:var(--text-muted);">UTTT (Tula-Tepeji), UAEH (Hidalgo) e INIFAP tienen programas de investigación en curso. Contactar estas instituciones para participar en proyectos de biocontrol.</p>
+              <h4 style="color:var(--green);margin-bottom:0.5rem;">Investigación activa en la región</h4>
+              <p style="font-size:0.88rem; color:var(--ink-l);">UTTT (Tula-Tepeji), UAEH (Hidalgo) e INIFAP tienen programas de investigación en curso. Contactar estas instituciones para participar en proyectos de biocontrol.</p>
             </div>
           </div>
         </div>
@@ -1258,10 +1596,10 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       <!-- RESTAURACIÓN -->
       <div class="tab-pane" id="tab-restauracion" role="tabpanel">
         <div class="method-header">
-          <div class="method-icon" style="background:var(--green-soft);">🌳</div>
+          <div class="method-icon" style="background:#EBF3E0;"><svg width="26" height="26" viewBox="0 0 20 20" fill="none" aria-hidden="true"><polygon points="10,2 15.5,10 4.5,10" stroke="#2D5016" stroke-width="1.4" stroke-linejoin="round" fill="none"/><polygon points="10,6 15,14 5,14" stroke="#2D5016" stroke-width="1.4" stroke-linejoin="round" fill="none"/><rect x="9" y="14" width="2" height="4" rx="0.5" fill="#2D5016" opacity="0.7"/></svg></div>
           <div>
-            <h3 style="color:var(--green-dark);">Restauración y Manejo Silvícola</h3>
-            <p style="color:var(--text-muted); font-size:0.92rem;">El método con mayor efectividad documentada a largo plazo. Requiere más coordinación pero protege 5–7 años.</p>
+            <h3 style="color:var(--green);">Restauración y Manejo Silvícola</h3>
+            <p style="color:var(--ink-l); font-size:0.92rem;">El método con mayor efectividad documentada a largo plazo. Requiere más coordinación pero protege 5–7 años.</p>
           </div>
         </div>
 
@@ -1271,7 +1609,12 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
               <div class="big-num" style="font-size:3rem;">86%</div>
               <p style="font-size:0.9rem;">reducción de reinfestación con 30% aclareo + 100% poda de ramas infestadas<br><cite style="font-size:0.8rem;">Flores-Flores et al. 2016, INIFAP/UAAAN, experimento 3 años</cite></p>
             </div>
-            <h4 style="margin-bottom:0.8rem;color:var(--green-dark);">Protocolo silvícola</h4>
+            <blockquote style="border-left:3px solid var(--gold); padding:0.9rem 1.2rem 0.9rem 2.4rem; margin:0 0 1.2rem; position:relative;">
+              <span style="font-family:'Playfair Display',Georgia,serif; font-size:4rem; font-weight:800; color:var(--gold); opacity:0.45; position:absolute; left:0.15rem; top:-0.6rem; line-height:1;">"</span>
+              <p style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:0.98rem; line-height:1.55; color:var(--ink-m); margin:0;">«El control mecánico combinado con aclareo silvícola protege al arbolado durante 5 a 7 años — la opción con mayor durabilidad documentada en campo.»</p>
+              <cite style="display:block; margin-top:0.6rem; font-family:'Raleway',sans-serif; font-style:normal; font-size:0.7rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--green-m);">Flores-Flores et al. (2016) &#8212; INIFAP/UAAAN</cite>
+            </blockquote>
+            <h4 style="margin-bottom:0.8rem;color:var(--green);">Protocolo silvícola</h4>
             <ul class="steps-list">
               <li>Retira el <strong>30% de árboles más débiles y suprimidos</strong> del arbolado (aclareo). Esto mejora la salud de los árboles que permanecen.</li>
               <li>Poda el <strong>100% de las ramas infestadas</strong> de los árboles restantes, priorizando las ramas bajas (zona preferida de recolonización).</li>
@@ -1280,7 +1623,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
             </ul>
           </div>
           <div>
-            <h4 style="margin-bottom:0.8rem;color:var(--green-dark);">Principios clave</h4>
+            <h4 style="margin-bottom:0.8rem;color:var(--green);">Principios clave</h4>
             <ul class="damage-list">
               <li><strong>Priorizar árboles fuente:</strong> Los árboles con &gt;50% cobertura en múltiples ramas producen la mayoría de las semillas. Trátarlos primero tiene el mayor impacto en toda la zona. <cite>(Valverde &amp; Bernal 2010)</cite></li>
               <li><strong>Restaurar densidad de dosel:</strong> Con &gt;275 árboles/ha, el dosel denso genera sombra y limita la dispersión. El desmonte histórico del Mezquital creó las condiciones ideales para la explosión poblacional. <cite>(Chaves et al. 2021)</cite></li>
@@ -1298,8 +1641,9 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ PREVENCIÓN ═══════════════════════════════════ -->
-<section id="prevencion" class="section section-alt">
+<section id="prevencion" class="section section-alt" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">IV</div>
     <div class="section-header reveal">
       <div class="badge-science">Manejo Integrado</div>
       <h2>Los 5 Pilares de la Prevención</h2>
@@ -1370,8 +1714,9 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ ERRORES ═══════════════════════════════════ -->
-<section id="errores" class="section">
+<section id="errores" class="section section-errores" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">V</div>
     <div class="section-header reveal">
       <div class="badge-science">Errores Documentados</div>
       <h2>Errores Más Comunes</h2>
@@ -1474,8 +1819,9 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ FAQ ═══════════════════════════════════ -->
-<section id="faq" class="section section-alt">
+<section id="faq" class="section section-alt" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">VI</div>
     <div class="section-header reveal">
       <div class="badge-science">Preguntas Frecuentes</div>
       <h2>Preguntas Frecuentes</h2>
@@ -1615,12 +1961,13 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ ÚNETE ═══════════════════════════════════ -->
-<section id="unete" class="section section-dark">
+<section id="unete" class="section section-dark" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">VII</div>
     <div class="section-header reveal">
-      <div class="badge-science" style="background:rgba(196,134,42,0.2); border-color:rgba(196,134,42,0.4); color:var(--accent-light);">Acción Comunitaria</div>
+      <div class="badge-science" style="background:rgba(196,134,42,0.2); border-color:rgba(196,134,42,0.4); color:var(--gold-l);">Acción Comunitaria</div>
       <h2>Actúa. El Mezquite Necesita Tu Ayuda.</h2>
-      <div class="divider" style="background:var(--accent);"></div>
+      <div class="divider" style="background:var(--ochre);"></div>
       <p>La próxima campaña de brigadas inicia en enero. Regístrate para recibir información sobre capacitación, materiales y coordinación en tu municipio.</p>
     </div>
 
@@ -1727,7 +2074,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
           <div class="check">✅</div>
           <h3>¡Registro recibido!</h3>
           <p>Gracias por unirte. Te contactaremos antes de enero con información sobre la próxima campaña en <strong id="success-muni"></strong>.</p>
-          <p style="margin-top:0.8rem; font-size:0.82rem; color:var(--text-muted);">Mientras tanto, comparte esta página con tu comunidad.</p>
+          <p style="margin-top:0.8rem; font-size:0.82rem; color:var(--ink-l);">Mientras tanto, comparte esta página con tu comunidad.</p>
         </div>
       </div>
     </div>
@@ -1735,8 +2082,9 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 </section>
 
 <!-- ═══════════════════════════════════ REFERENCIAS ═══════════════════════════════════ -->
-<section id="referencias" class="section">
+<section id="referencias" class="section" style="overflow:hidden;">
   <div class="container">
+    <div class="section-wm" aria-hidden="true">VIII</div>
     <div class="section-header reveal">
       <div class="badge-science">Evidencia Científica</div>
       <h2>Respaldo Científico</h2>
@@ -1744,10 +2092,17 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       <p>Toda la información en este sitio está respaldada por investigación revisada por pares o fuentes institucionales verificadas. Haz clic en los enlaces para acceder a los artículos originales.</p>
     </div>
 
+    <div class="ref-filters reveal" role="group" aria-label="Filtrar referencias">
+      <button class="ref-filter active" data-filter="all">Todas</button>
+      <button class="ref-filter" data-filter="peer-reviewed">Artículo científico</button>
+      <button class="ref-filter" data-filter="institutional">Institucional</button>
+      <button class="ref-filter" data-filter="report">Documento técnico</button>
+    </div>
+
     <div class="refs-grid reveal">
 
       <!-- 1 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2014</div>
         <span class="ref-type-badge ref-type-article">Artículo científico</span>
         <h4>Flores-Palacios et al. — Umbral crítico de daño</h4>
@@ -1762,7 +2117,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 2 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2016</div>
         <span class="ref-type-badge ref-type-article">Artículo científico</span>
         <h4>Flores-Flores et al. — Método silvícola 86% reducción</h4>
@@ -1773,7 +2128,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 3 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2024</div>
         <span class="ref-type-badge ref-type-article">Artículo científico</span>
         <h4>Reséndiz-Vega et al. — Bicarbonato vs. vinagre (UTTT)</h4>
@@ -1787,7 +2142,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 4 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2021</div>
         <span class="ref-type-badge ref-type-article">Artículo científico</span>
         <h4>Reséndiz-Vega &amp; Sánchez-Trujillo — Función ambiental Tula</h4>
@@ -1801,7 +2156,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 5 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2020</div>
         <span class="ref-type-badge ref-type-article">Artículo científico</span>
         <h4>Grupo IPICYT — Parásita estructural del mezquite</h4>
@@ -1816,7 +2171,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 6 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2009</div>
         <span class="ref-type-badge ref-type-article">Artículo científico (acceso abierto)</span>
         <h4>Valle del Mezquital — Contaminantes atmosféricos</h4>
@@ -1830,7 +2185,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 7 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2017</div>
         <span class="ref-type-badge ref-type-article">Artículo científico (acceso abierto)</span>
         <h4>Dispersión limitada de Tillandsia — PLOS ONE</h4>
@@ -1845,7 +2200,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 8 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2023</div>
         <span class="ref-type-badge ref-type-article">Artículo científico</span>
         <h4>Artrópodos asociados en Tecozautla, Hidalgo — SciELO</h4>
@@ -1859,7 +2214,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 9 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="peer-reviewed">
         <div class="ref-year">2010</div>
         <span class="ref-type-badge ref-type-article">Artículo científico</span>
         <h4>Valverde &amp; Bernal — Dinámica metapoblacional</h4>
@@ -1873,7 +2228,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 10 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="institutional">
         <div class="ref-year">2017</div>
         <span class="ref-type-badge ref-type-institutional">Fuente institucional</span>
         <h4>CONAFOR — Manejo en Tula de Allende</h4>
@@ -1887,7 +2242,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       </div>
 
       <!-- 11 -->
-      <div class="ref-card">
+      <div class="ref-card" data-type="report">
         <div class="ref-year">2022</div>
         <span class="ref-type-badge ref-type-report">Documento técnico</span>
         <h4>Programa Municipal — Tula de Allende</h4>
@@ -1949,6 +2304,42 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 
 <script>
 (function() {
+
+  // ─── Scroll progress bar ───
+  var progressBar = document.getElementById('progress-bar');
+  function updateProgress() {
+    var d = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = 'scaleX(' + (d > 0 ? window.scrollY / d : 0) + ')';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // ─── Section nav dots ───
+  var sectionIds = ['inicio','que-es','problema','metodos','prevencion','errores','faq','unete','referencias'];
+  var dots = document.querySelectorAll('.s-dot');
+  function updateDots() {
+    var y = window.scrollY + window.innerHeight * 0.38;
+    var active = 0;
+    sectionIds.forEach(function(id, i) {
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= y) active = i;
+    });
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === active); });
+  }
+  window.addEventListener('scroll', updateDots, { passive: true });
+  updateDots();
+
+  // ─── Reference filter chips ───
+  document.querySelectorAll('.ref-filter').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.ref-filter').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      var f = this.dataset.filter;
+      document.querySelectorAll('.ref-card').forEach(function(card) {
+        card.style.display = (f === 'all' || card.dataset.type === f) ? '' : 'none';
+      });
+    });
+  });
 
   // ─── Navbar scroll ───
   var navbar = document.getElementById('navbar');
