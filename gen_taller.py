@@ -326,6 +326,43 @@ def build():
     story.append(Paragraph(f'• El {b("comercio navideño")} es el principal vector artificial de dispersión '
                            f'(alerta formal CONAFOR).', sBullet))
 
+    # Imágenes de dispersión
+    story.append(spacer(0.35))
+    col_w = (W - 0.6*cm) / 2
+    img_cells = []
+    cap_cells = []
+    for img_path, caption in [
+        (os.path.join(os.path.dirname(__file__), 'images', 'tillandsia_recurvata_frutos.png'),
+         'Tillandsia recurvata — cápsulas con semillas plumosas'),
+        (os.path.join(os.path.dirname(__file__), 'images', 'Tillandsia_recurbata_semillas.png'),
+         'Semillas plumosas de T. recurvata — dispersión anemócora'),
+    ]:
+        if os.path.exists(img_path):
+            ri = RLImage(img_path)
+            aspect = ri.imageHeight / float(ri.imageWidth)
+            ri.drawWidth  = col_w
+            ri.drawHeight = col_w * aspect
+            if ri.drawHeight > 6*cm:
+                ri.drawWidth  = 6*cm / aspect
+                ri.drawHeight = 6*cm
+            img_cells.append(ri)
+        else:
+            img_cells.append(Spacer(col_w, 1))
+        cap_cells.append(Paragraph(caption,
+            S('ic', fontName='Helvetica-Oblique', fontSize=7.5,
+              textColor=INK_L, leading=10, alignment=TA_CENTER)))
+    disp_t = Table([img_cells, cap_cells], colWidths=[col_w, col_w])
+    disp_t.setStyle(TableStyle([
+        ('ALIGN',         (0,0), (-1,-1), 'CENTER'),
+        ('VALIGN',        (0,0), (-1,0),  'BOTTOM'),
+        ('TOPPADDING',    (0,0), (-1,-1), 4),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 4),
+        ('LEFTPADDING',   (0,0), (-1,-1), 6),
+        ('RIGHTPADDING',  (0,0), (-1,-1), 6),
+    ]))
+    story.append(disp_t)
+    story.append(spacer(0.2))
+
     story.append(PageBreak())
 
     # ════════════════════════════════════════════════════════════
