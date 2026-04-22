@@ -617,14 +617,14 @@ label {
   font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-m); margin-bottom: 6px;
 }
-input, select, textarea {
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
   width: 100%; padding: 11px 14px; font-size: 0.95rem;
   font-family: 'Source Serif 4', serif; color: var(--ink);
   background: var(--linen); border: 1.5px solid rgba(30,61,10,0.16);
   border-radius: var(--r-s); transition: border-color var(--t), box-shadow var(--t);
   appearance: none; -webkit-appearance: none;
 }
-input:focus, select:focus, textarea:focus {
+input:not([type="checkbox"]):not([type="radio"]):focus, select:focus, textarea:focus {
   outline: none; border-color: var(--green-m);
   box-shadow: 0 0 0 3px rgba(62,107,32,0.12);
   background: var(--white);
@@ -2024,7 +2024,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
                 <option>Ixmiquilpan</option>
                 <option>Cardonal</option>
                 <option>Tecozautla</option>
-                <option>Otro municipio de Hidalgo</option>
+                <option>Otro municipio</option>
               </select>
             </div>
             <div>
@@ -2405,7 +2405,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   }
 
   // ─── Contact form — FormSubmit.co ───
-  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/REEMPLAZA_CON_TU_CORREO@dominio.com';
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/oon@azc.uam.mx';
 
   var form = document.getElementById('brigade-form');
   var successDiv = document.getElementById('form-success');
