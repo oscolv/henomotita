@@ -643,6 +643,95 @@ def build():
         sNote))
 
     # ════════════════════════════════════════════════════════════
+    # MÓDULO SEGURIDAD
+    # ════════════════════════════════════════════════════════════
+    story.append(PageBreak())
+
+    AMBER   = HexColor('#B8741A')
+    AMBER_B = HexColor('#8B5510')
+    AMBER_L = HexColor('#FFF8EC')
+    RED_L   = HexColor('#FDF1EF')
+
+    seg_header_data = [[
+        Paragraph('<b>⚠</b>', S('si', fontName='Helvetica-Bold', fontSize=18,
+                  textColor=WHITE, leading=22, alignment=TA_CENTER)),
+        [Paragraph('PROTOCOLO DE SEGURIDAD', S('sl2', fontName='Helvetica-Bold',
+                   fontSize=7.5, textColor=GOLD, leading=10, spaceAfter=2, letterSpacing=1.5)),
+         Paragraph('Medidas de Seguridad para Brigadistas', S('st2', fontName='Helvetica-Bold',
+                   fontSize=14, textColor=WHITE, leading=17)),
+         Paragraph('Conoce los riesgos documentados antes de iniciar cualquier campaña',
+                   S('ss2', fontName='Helvetica', fontSize=8, textColor=HexColor('#C8E8A0'), leading=11))]
+    ]]
+    seg_h = Table(seg_header_data, colWidths=[2*cm, None])
+    seg_h.setStyle(TableStyle([
+        ('BACKGROUND', (0,0),(-1,-1), HexColor('#1C1408')),
+        ('VALIGN',     (0,0),(-1,-1), 'MIDDLE'),
+        ('LEFTPADDING', (0,0),(0,0), 10),
+        ('RIGHTPADDING',(0,0),(0,0), 8),
+        ('TOPPADDING',  (0,0),(-1,-1), 10),
+        ('BOTTOMPADDING',(0,0),(-1,-1), 10),
+        ('ROUNDEDCORNERS', [6,6,6,6]),
+    ]))
+    story.append(seg_h)
+    story.append(spacer(0.4))
+
+    # Tabla EPP + Precauciones (2 columnas)
+    epp_items = [
+        Paragraph(b('EQUIPO DE PROTECCIÓN PERSONAL'), S('sh', fontName='Helvetica-Bold',
+                  fontSize=8.5, textColor=AMBER_B, leading=11)),
+        Paragraph('🧤  Guantes de trabajo al manipular varilla y material removido', sBullet),
+        Paragraph('🥽  Gafas protectoras durante la aplicación de bicarbonato', sBullet),
+        Paragraph('😷  Cubrebocas al rociar y al manipular material en polvo', sBullet),
+        Paragraph('👕  Manga larga en campo; evitar exposición prolongada al sol', sBullet),
+    ]
+    prec_items = [
+        Paragraph(b('PRECAUCIONES AL ROCIAR'), S('sh', fontName='Helvetica-Bold',
+                  fontSize=8.5, textColor=AMBER_B, leading=11)),
+        Paragraph(f'✗  {red("No rociar en lluvia")} ni alta humedad — diluye el producto', sBullet),
+        Paragraph('!   Probar en área pequeña antes de escalar — mezquite/huizache sin datos de fitotoxicidad publicados', sBullet),
+        Paragraph(f'✗  {red("Ciruelo y cerezo ornamental")}: riesgo de quemadura foliar con bicarbonato ≥2.5%', sBullet),
+        Paragraph('    Agitar constantemente la aspersora; disolver bien antes de cargar', sBullet),
+    ]
+
+    seg2_data = [[epp_items, prec_items]]
+    seg2_t = Table(seg2_data, colWidths=[W/2 - 0.3*cm, W/2 - 0.3*cm])
+    seg2_t.setStyle(TableStyle([
+        ('BACKGROUND', (0,0),(0,-1), AMBER_L),
+        ('BACKGROUND', (1,0),(1,-1), HexColor('#FEF8F7')),
+        ('BOX',  (0,0),(0,-1), 0.8, AMBER),
+        ('BOX',  (1,0),(1,-1), 0.8, RED),
+        ('TOPPADDING',    (0,0),(-1,-1), 10),
+        ('BOTTOMPADDING', (0,0),(-1,-1), 10),
+        ('LEFTPADDING',   (0,0),(-1,-1), 10),
+        ('VALIGN',        (0,0),(-1,-1), 'TOP'),
+        ('ROUNDEDCORNERS', [4,4,4,4]),
+    ]))
+    story.append(seg2_t)
+    story.append(spacer(0.35))
+
+    # Zona industrial
+    story.append(warn_box([
+        Paragraph(f'⚠  {ochre("Zona Industrial Tula-Tepeji — Precaución con el material removido")}', sWarn),
+        Paragraph(f'El heno motita acumula metales pesados (Pb, Cd) en sus tricomas hasta '
+                  f'{b("40× más concentrado")} que en zonas agrícolas.', sBody),
+        Paragraph(f'✗  {red("NO usar como forraje animal")} sin análisis de metales pesados previo.', sBullet),
+        Paragraph(f'✗  {red("NO usar como composta o sustrato")} sin análisis previo.', sBullet),
+        Paragraph(f'✓  Quema controlada — tratar como residuo potencialmente contaminado.', sBullet),
+        Paragraph(f'{em("Reséndiz-Vega & Sánchez-Trujillo 2021 · ACP 2009 — Atmospheric Chemistry and Physics")}',
+                  sNote),
+    ]))
+    story.append(spacer(0.35))
+
+    # Disposición del material
+    story.append(key_box([
+        Paragraph(b('Protocolo de disposición del material removido (CONAFOR)'), sSectionTitle),
+        Paragraph(f'1. {b("Embolsar inmediatamente")} — viabilidad del material separado: hasta 6 meses.', sBullet),
+        Paragraph(f'2. {b("Quemar")} — método de disposición aprobado por CONAFOR. Las cenizas pueden usarse como fertilizante.', sBullet),
+        Paragraph(f'✗  {red("No dejar en el suelo")} ni transportar abierto — puede re-establecerse o dispersarse a nuevas zonas.', sBullet),
+        Paragraph(f'✗  {red("Herbicidas selectivos")}: el uso forestal requiere autorización de SEMARNAT/CONAFOR.', sBullet),
+    ]))
+
+    # ════════════════════════════════════════════════════════════
     # MÓDULO ZRE — DECRETO FEDERAL
     # ════════════════════════════════════════════════════════════
     story.append(PageBreak())
