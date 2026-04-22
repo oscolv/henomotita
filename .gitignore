@@ -1,0 +1,16 @@
+# Editor y sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Claude Code
+.claude/
+
+# Logs
+*.log
+
+# Variables de entorno locales
+.env
+.env.local

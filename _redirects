@@ -1,0 +1,5 @@
+# Redirige www a raíz (configura en Cloudflare dashboard también)
+# https://www.henomotita.mx/* https://henomotita.mx/:splat 301
+
+# Página 404 personalizada (opcional: crear 404.html)
+# /* /index.html 200
