@@ -716,7 +716,7 @@ def build():
     story.append(spacer(0.35))
 
     # Mapa ZRE
-    zre_img_path = os.path.join(os.path.dirname(__file__), 'ZRE.png')
+    zre_img_path = os.path.join(os.path.dirname(__file__), 'images', 'ZRE.png')
     if os.path.exists(zre_img_path):
         img = RLImage(zre_img_path)
         aspect = img.imageHeight / float(img.imageWidth)
