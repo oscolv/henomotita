@@ -6,7 +6,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer,
                                  Table, TableStyle, HRFlowable,
-                                 KeepTogether, PageBreak)
+                                 KeepTogether, PageBreak, Image as RLImage)
 from reportlab.pdfgen import canvas
 from reportlab.lib.colors import HexColor
 import os
@@ -50,9 +50,6 @@ def make_page(canvas_obj, doc):
     canvas_obj.setFillColor(FOREST)
     canvas_obj.rect(0, 0, W, 12*mm, fill=1, stroke=0)
     canvas_obj.setFillColor(WHITE)
-    canvas_obj.setFont('Helvetica', 7.5)
-    canvas_obj.drawString(2*cm, 4*mm,
-        'Información basada en evidencia científica — INIFAP · UTTT · CONAFOR · publicaciones revisadas por pares.')
     canvas_obj.setFont('Helvetica-Bold', 7.5)
     canvas_obj.drawRightString(W - 2*cm, 4*mm, f'Pág. {doc.page}')
 
@@ -192,25 +189,30 @@ def build():
     # ════════════════════════════════════════════════════════════
     # PORTADA
     # ════════════════════════════════════════════════════════════
-    cover_bg = Table([['']], colWidths=[W], rowHeights=[6*cm])
+    cover_items = [
+        Paragraph('🌿', S('ico', fontName='Helvetica', fontSize=28,
+                           alignment=TA_CENTER, leading=40)),
+        Paragraph('TALLER 1', S('tw', fontName='Helvetica-Bold',
+                    fontSize=9, textColor=GOLD, leading=12, alignment=TA_CENTER,
+                    letterSpacing=3)),
+        Paragraph('Primera Campaña de Control<br/>del Heno Motita', sTitle),
+        Paragraph(em('Tillandsia recurvata') + ' · Valle del Mezquital, Hidalgo', sSubtitle),
+        Spacer(1, 0.4*cm),
+        Paragraph('Duración: 30 minutos · 5 módulos · Año 2026', sMeta),
+        Spacer(1, 0.2*cm),
+    ]
+    cover_bg = Table([[cover_items]], colWidths=[W])
     cover_bg.setStyle(TableStyle([
-        ('BACKGROUND',(0,0),(-1,-1), FOREST),
+        ('BACKGROUND',     (0,0),(-1,-1), FOREST),
+        ('TOPPADDING',     (0,0),(-1,-1), 22),
+        ('BOTTOMPADDING',  (0,0),(-1,-1), 22),
+        ('LEFTPADDING',    (0,0),(-1,-1), 18),
+        ('RIGHTPADDING',   (0,0),(-1,-1), 18),
         ('ROUNDEDCORNERS', [8,8,8,8]),
+        ('VALIGN',         (0,0),(-1,-1), 'MIDDLE'),
     ]))
     story.append(spacer(0.5))
     story.append(cover_bg)
-
-    # Contenido de portada sobre la tabla (usamos párrafos normales)
-    story.append(spacer(-5.8))  # subir
-    story.append(Paragraph('🌿', S('ico', fontName='Helvetica', fontSize=28,
-                                    alignment=TA_CENTER, leading=34)))
-    story.append(Paragraph('TALLER 1', S('tw', fontName='Helvetica-Bold',
-                fontSize=9, textColor=GOLD, leading=12, alignment=TA_CENTER,
-                letterSpacing=3)))
-    story.append(Paragraph('Primera Campaña de Control<br/>del Heno Motita', sTitle))
-    story.append(Paragraph(em('Tillandsia recurvata') + ' · Valle del Mezquital, Hidalgo', sSubtitle))
-    story.append(spacer(0.4))
-    story.append(Paragraph('Duración: 30 minutos · 5 módulos · Año 2026', sMeta))
     story.append(spacer(1.5))
 
     # Recuadro de objetivos de portada
@@ -602,6 +604,142 @@ def build():
         f'Flores-Flores et al. 2016 · Valverde & Bernal 2010 · Flores-Palacios 2014 · LSU AgCenter. '
         f'Información compilada con base en evidencia revisada por pares.',
         sNote))
+
+    # ════════════════════════════════════════════════════════════
+    # MÓDULO ZRE — DECRETO FEDERAL
+    # ════════════════════════════════════════════════════════════
+    story.append(PageBreak())
+
+    # Encabezado ZRE con esquema dorado
+    GOLD_D = HexColor('#8B6914')
+    GOLD_B = HexColor('#B8941A')
+    GOLD_L = HexColor('#FFFBF0')
+    GOLD_I = HexColor('#D4C070')
+
+    zre_header_data = [[
+        Paragraph('<b>ZRE</b>', S('zn', fontName='Helvetica-Bold', fontSize=16,
+                  textColor=WHITE, leading=20, alignment=TA_CENTER)),
+        [Paragraph('DECRETO FEDERAL · DOF 26/09/2024', S('zl', fontName='Helvetica-Bold',
+                   fontSize=7.5, textColor=GOLD, leading=10, spaceAfter=2, letterSpacing=1.5)),
+         Paragraph('Zona de Restauración Ecológica — Presa Endhó', S('zt', fontName='Helvetica-Bold',
+                   fontSize=14, textColor=WHITE, leading=17)),
+         Paragraph('Heno motita nombrado explícitamente como especie invasora objetivo', S('zs',
+                   fontName='Helvetica', fontSize=8, textColor=HexColor('#C8E8A0'), leading=11))]
+    ]]
+    zre_h = Table(zre_header_data, colWidths=[2*cm, None])
+    zre_h.setStyle(TableStyle([
+        ('BACKGROUND', (0,0),(-1,-1), GOLD_D),
+        ('VALIGN',     (0,0),(-1,-1), 'MIDDLE'),
+        ('LEFTPADDING', (0,0),(0,0), 10),
+        ('RIGHTPADDING',(0,0),(0,0), 8),
+        ('TOPPADDING',  (0,0),(-1,-1), 10),
+        ('BOTTOMPADDING',(0,0),(-1,-1), 10),
+        ('ROUNDEDCORNERS', [6,6,6,6]),
+    ]))
+    story.append(zre_h)
+    story.append(spacer(0.4))
+
+    story.append(Paragraph('¿Qué establece el decreto?', sSectionTitle))
+    story.append(Paragraph(
+        f'El {b("Decreto ZRE Presa Endhó")} (DOF 26 de septiembre de 2024, LGEEPA Arts. 78 y 78 BIS) '
+        f'declara {b("36,637 hectáreas")} del Valle del Mezquital como Zona de Restauración Ecológica '
+        f'y nombra al {em("heno motita")} como especie invasora de control obligatorio — '
+        f'la primera vez que existe una obligación legal federal expresa para controlarlo.',
+        sBody))
+    story.append(spacer(0.3))
+
+    story.append(Paragraph('Artículos directamente relevantes al heno motita', sSectionTitle))
+    decree_arts = [
+        ('Art. 3° fracc. III',
+         'Implementar programas de monitoreo y control del heno motita y el lirio acuático '
+         'mediante métodos mecánicos y/o biológicos; incluir educación comunitaria sobre su impacto.'),
+        ('Art. 3° fracc. XII',
+         'Capacitar en los 8 municipios y formar brigadas de saneamiento forestal '
+         'para el control de plagas epífitas.'),
+        ('Art. 4° fracc. V',
+         'Prohibición expresa de introducir o liberar especies invasoras en la ZRE — '
+         'refuerza la alerta de CONAFOR sobre el comercio navideño de heno motita.'),
+    ]
+    for art, text in decree_arts:
+        art_data = [[
+            Paragraph(b(art), S('al', fontName='Helvetica-Bold', fontSize=8.5,
+                       textColor=WHITE, leading=11, alignment=TA_CENTER)),
+            Paragraph(text, sBody)
+        ]]
+        at = Table(art_data, colWidths=[2.8*cm, None])
+        at.setStyle(TableStyle([
+            ('BACKGROUND', (0,0),(0,-1), GOLD_D),
+            ('BACKGROUND', (1,0),(1,-1), GOLD_L),
+            ('BOX',    (0,0),(-1,-1), 0.8, GOLD_B),
+            ('VALIGN', (0,0),(-1,-1), 'MIDDLE'),
+            ('TOPPADDING',    (0,0),(-1,-1), 8),
+            ('BOTTOMPADDING', (0,0),(-1,-1), 8),
+            ('LEFTPADDING',   (0,0),(0,-1), 6),
+            ('LEFTPADDING',   (1,0),(1,-1), 10),
+            ('ROUNDEDCORNERS', [3,3,3,3]),
+        ]))
+        story.append(at)
+        story.append(spacer(0.2))
+
+    story.append(spacer(0.2))
+
+    # Estadísticas clave
+    story.append(Paragraph('Alcance del decreto', sSectionTitle))
+    stats_data = [
+        [Paragraph(b('36,637 ha'), S('sv', fontName='Helvetica-Bold', fontSize=20,
+                   textColor=FOREST, leading=24, alignment=TA_CENTER)),
+         Paragraph(b('8 municipios'), S('sv', fontName='Helvetica-Bold', fontSize=20,
+                   textColor=FOREST, leading=24, alignment=TA_CENTER)),
+         Paragraph(b('12 años'), S('sv', fontName='Helvetica-Bold', fontSize=20,
+                   textColor=FOREST, leading=24, alignment=TA_CENTER))],
+        [Paragraph('Superficie total ZRE', S('sl', fontName='Helvetica', fontSize=7.5,
+                   textColor=INK_L, leading=10, alignment=TA_CENTER)),
+         Paragraph('Atitalaquia · Atotonilco · Tepeji · Tepetitlán<br/>'
+                   'Tezontepec · Tlahuelilpan · Tlaxcoapan · Tula de Allende',
+                   S('sl', fontName='Helvetica', fontSize=7, textColor=INK_L, leading=9, alignment=TA_CENTER)),
+         Paragraph('Duración máx. de proyectos', S('sl', fontName='Helvetica', fontSize=7.5,
+                   textColor=INK_L, leading=10, alignment=TA_CENTER))],
+    ]
+    stt = Table(stats_data, colWidths=[W/3 - 0.2*cm, W/3 + 0.4*cm, W/3 - 0.2*cm])
+    stt.setStyle(TableStyle([
+        ('BACKGROUND',  (0,0),(-1,-1), GOLD_L),
+        ('BOX',         (0,0),(-1,-1), 0.8, GOLD_B),
+        ('INNERGRID',   (0,0),(-1,-1), 0.3, GOLD_I),
+        ('TOPPADDING',  (0,0),(-1,0), 10),
+        ('BOTTOMPADDING',(0,0),(-1,0), 4),
+        ('TOPPADDING',  (0,1),(-1,1), 4),
+        ('BOTTOMPADDING',(0,1),(-1,1), 10),
+        ('VALIGN',      (0,0),(-1,-1), 'MIDDLE'),
+        ('ROUNDEDCORNERS', [4,4,4,4]),
+    ]))
+    story.append(stt)
+    story.append(spacer(0.35))
+
+    # Mapa ZRE
+    zre_img_path = os.path.join(os.path.dirname(__file__), 'ZRE.png')
+    if os.path.exists(zre_img_path):
+        img = RLImage(zre_img_path)
+        aspect = img.imageHeight / float(img.imageWidth)
+        img.drawWidth  = W
+        img.drawHeight = W * aspect
+        if img.drawHeight > 10*cm:
+            img.drawWidth  = 10*cm / aspect
+            img.drawHeight = 10*cm
+        story.append(Paragraph(
+            'Mapa oficial de la Zona de Restauración Ecológica (DOF 26/09/2024)',
+            S('cap', fontName='Helvetica-Oblique', fontSize=8, textColor=INK_L,
+              leading=11, alignment=TA_CENTER)))
+        story.append(spacer(0.15))
+        story.append(img)
+        story.append(spacer(0.2))
+
+    story.append(key_box([
+        Paragraph(
+            f'{b("Implicación práctica:")} las brigadas formadas en este taller están '
+            f'respaldadas por mandato federal. SEMARNAT debe publicar el programa de restauración '
+            f'con protocolos para municipios de la ZRE.',
+            sBody),
+    ]))
 
     doc.build(story, onFirstPage=make_page, onLaterPages=make_page)
     print(f'PDF generado: {OUTPUT}')
