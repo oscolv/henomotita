@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E3D0A'/%3E%3Ccircle cx='16' cy='13' r='8' fill='%23B8741A'/%3E%3Ccircle cx='16' cy='13' r='5.5' fill='%23D4922C'/%3E%3Ccircle cx='16' cy='13' r='8' fill='none' stroke='%23E8B050' stroke-width='1.2' opacity='0.5'/%3E%3Cline x1='16' y1='5' x2='16' y2='21' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.35'/%3E%3Cline x1='8' y1='13' x2='24' y2='13' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.35'/%3E%3Cline x1='10.3' y1='7.3' x2='21.7' y2='18.7' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.25'/%3E%3Cline x1='21.7' y1='7.3' x2='10.3' y2='18.7' stroke='%23FAF6EE' stroke-width='0.9' opacity='0.25'/%3E%3Crect x='15' y='21' width='2' height='7' rx='1' fill='%235A8F32'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=Raleway:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════
    DESIGN SYSTEM
@@ -28,7 +28,7 @@
   --white:    #FFFFFF;
   --ink:      #1A1A18;
   --ink-m:    #3D3B34;
-  --ink-l:    #6B6555;
+  --ink-l:    #4A453E;
   --rule:     rgba(30,61,10,0.10);
   --rule-l:   rgba(30,61,10,0.06);
   --red:      #C0392B;
@@ -52,8 +52,8 @@ body {
   font-family: 'Source Serif 4', Georgia, serif;
   background: var(--linen);
   color: var(--ink);
-  line-height: 1.75;
-  font-size: 17px;
+  line-height: 1.8;
+  font-size: 18px;
   overflow-x: hidden;
 }
 
@@ -71,8 +71,8 @@ p  { margin-bottom: 0.85em; }
 p:last-child { margin-bottom: 0; }
 
 strong { font-weight: 600; color: var(--green); }
-em     { font-family: 'Lora', serif; font-style: italic; color: inherit; }
-cite   { font-family: 'Lora', serif; font-style: italic; font-size: 0.85em; color: var(--green-m); }
+em     { font-style: italic; color: inherit; }
+cite   { font-style: italic; font-size: 0.85em; color: var(--green-m); }
 
 a { color: var(--green-m); text-decoration: none; transition: color var(--t); }
 a:hover { color: var(--ochre); }
@@ -201,6 +201,7 @@ small { font-size: 0.82em; color: var(--ink-l); }
   border-radius: var(--r-m); transition: background var(--t), color var(--t);
   border-bottom: 1px solid rgba(255,255,255,0.07);
   display: flex; align-items: center; justify-content: space-between;
+  min-height: 48px;
 }
 .mobile-menu a::after { content: '›'; font-size: 1.4rem; color: rgba(255,255,255,0.3); line-height: 1; }
 .mobile-menu a:active { background: rgba(255,255,255,0.1); }
@@ -287,8 +288,8 @@ small { font-size: 0.82em; color: var(--ink-l); }
   display: inline-flex; align-items: center; gap: 8px;
   font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 0.88rem;
   letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 13px 28px; border-radius: var(--r-s); cursor: pointer; border: none;
-  transition: all var(--t); text-decoration: none;
+  padding: 16px 32px; border-radius: var(--r-s); cursor: pointer; border: none;
+  min-height: 48px; transition: all var(--t); text-decoration: none;
 }
 .btn-primary {
   background: var(--ochre); color: var(--white);
@@ -423,7 +424,7 @@ small { font-size: 0.82em; color: var(--ink-l); }
 .tab-buttons::-webkit-scrollbar { display: none; }
 
 .tab-btn {
-  flex-shrink: 0; padding: 15px 22px;
+  flex-shrink: 0; padding: 15px 22px; min-height: 48px;
   background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer;
   font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 0.75rem;
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -550,7 +551,7 @@ small { font-size: 0.82em; color: var(--ink-l); }
 
 .faq-q {
   width: 100%; background: none; border: none; cursor: pointer;
-  padding: 1.25rem 1.5rem; text-align: left;
+  padding: 1.25rem 1.5rem; text-align: left; min-height: 48px;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 0.97rem; color: var(--ink);
   transition: background var(--t);
@@ -573,7 +574,7 @@ small { font-size: 0.82em; color: var(--ink-l); }
   padding: 1.4rem 1.5rem; font-size: 0.93rem; color: var(--ink-m);
   line-height: 1.78; border-top: 1px solid var(--rule-l);
 }
-.faq-a-inner cite { font-family: 'Lora', serif; font-style: italic; color: var(--green-m); font-size: 0.85em; }
+.faq-a-inner cite { font-style: italic; color: var(--green-m); font-size: 0.85em; }
 
 /* ─── ÚNETE ─── */
 #unete { background: var(--forest); }
@@ -643,7 +644,7 @@ textarea { resize: vertical; min-height: 95px; font-family: 'Source Serif 4', se
 }
 
 .btn-submit {
-  width: 100%; margin-top: 0.5rem; padding: 14px;
+  width: 100%; margin-top: 0.5rem; padding: 16px; min-height: 48px;
   background: var(--green); color: var(--white);
   border: none; border-radius: var(--r-s);
   font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 0.85rem;
@@ -683,7 +684,7 @@ textarea { resize: vertical; min-height: 95px; font-family: 'Source Serif 4', se
   padding: 7px 10px; line-height: 1.55;
 }
 .ref-card .ref-authors { font-size: 0.82rem; color: var(--ink); margin: 0.25rem 0 0; font-weight: 500; font-family: 'Raleway', sans-serif; }
-.ref-card .ref-journal { font-family: 'Lora', serif; font-style: italic; font-size: 0.82rem; color: var(--ink-l); margin: 0.2rem 0 0; }
+.ref-card .ref-journal { font-style: italic; font-size: 0.82rem; color: var(--ink-l); margin: 0.2rem 0 0; }
 .ref-card .ref-meta { font-size: 0.76rem; color: var(--ink-l); margin: 0.15rem 0 0; font-family: 'Raleway', sans-serif; }
 .ref-card .ref-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; }
 
@@ -911,7 +912,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 .section { position: relative; }
 .section-wm {
   position: absolute; top: 1.5rem; right: 2rem; z-index: 0; pointer-events: none;
-  font-family: 'Playfair Display', Georgia, serif; font-weight: 800;
+  font-family: 'Source Serif 4', Georgia, serif; font-weight: 800;
   font-size: clamp(5rem, 14vw, 11rem); line-height: 1;
   opacity: 0.032; user-select: none; color: currentColor;
 }
@@ -920,7 +921,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 
 /* ─── DROP CAP ─── */
 .drop-cap::first-letter {
-  font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
+  font-family: 'Source Serif 4', Georgia, serif; font-weight: 700;
   font-size: 3.8em; line-height: 0.82; float: left;
   margin-right: 0.07em; margin-top: 0.06em; color: var(--green);
   padding-top: 0.04em;
@@ -933,13 +934,13 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   border-left: 3px solid var(--gold);
 }
 .pull-quote::before {
-  content: '\201C'; font-family: 'Playfair Display', Georgia, serif;
+  content: '\201C'; font-family: 'Source Serif 4', Georgia, serif;
   font-size: 5.5rem; font-weight: 800; line-height: 1;
   color: var(--gold); opacity: 0.55;
   position: absolute; left: 0.1rem; top: -0.8rem;
 }
 .pull-quote p {
-  font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+  font-family: 'Source Serif 4', Georgia, serif; font-style: italic;
   font-size: clamp(1.05rem, 1.9vw, 1.28rem); line-height: 1.55;
   color: rgba(255,255,255,0.92); margin: 0;
 }
@@ -1125,6 +1126,18 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   .hero-stat:last-child { border-right: none; }
 }
 
+/* ─── LEGIBILIDAD: LÍMITE DE LÍNEA ─── */
+.hero-sub,
+.sh-lead,
+.section-header > p,
+.faq-a-inner p,
+.inset-box p,
+.warning-box p,
+.tip-box,
+.alert-card p,
+.damage-list li,
+.steps-list li { max-width: 65ch; }
+
 /* ─── HERO FICHA DE IDENTIFICACIÓN ─── */
 .hero-ficha {
   background: rgba(255,255,255,0.07);
@@ -1147,7 +1160,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   color: var(--gold-l); flex-shrink: 0; min-width: 132px;
 }
 .ficha-value { color: rgba(255,255,255,0.88); }
-.ficha-value em { font-style: italic; font-family: 'Lora', serif; color: rgba(255,255,255,0.88); }
+.ficha-value em { font-style: italic; color: rgba(255,255,255,0.88); }
 
 .hero-btns-primary { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
 
@@ -1512,7 +1525,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
         <span style="display:block;width:28px;height:2px;background:var(--gold-l);"></span>
       </div>
       <h2 style="color:var(--white);margin-bottom:0.25rem;">Zona de Restauración Ecológica</h2>
-      <p style="font-family:'Lora',serif;font-weight:400;font-size:1.1rem;font-style:italic;color:var(--gold-l);margin:0 0 0.8rem;">Área de Influencia de la Presa Endhó</p>
+      <p style="font-family:'Source Serif 4',Georgia,serif;font-weight:400;font-size:1.1rem;font-style:italic;color:var(--gold-l);margin:0 0 0.8rem;">Área de Influencia de la Presa Endhó</p>
       <div class="divider" style="background:var(--ochre);margin:0 auto 1.2rem;"></div>
       <p style="color:rgba(255,255,255,0.72);max-width:680px;margin:0 auto;font-size:0.97rem;">El Ejecutivo Federal declaró <strong style="color:var(--gold-l);">36,637 hectáreas</strong> del Valle del Mezquital como Zona de Restauración Ecológica — el primer mandato legal federal que nombra explícitamente al heno motita como especie invasora de control obligatorio en la región.</p>
     </div>
@@ -1823,8 +1836,8 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
               <p style="font-size:0.9rem;">reducción de reinfestación con 30% aclareo + 100% poda de ramas infestadas<br><cite style="font-size:0.8rem;">Flores-Flores et al. 2016, INIFAP/UAAAN, experimento 3 años</cite></p>
             </div>
             <blockquote style="border-left:3px solid var(--gold); padding:0.9rem 1.2rem 0.9rem 2.4rem; margin:0 0 1.2rem; position:relative;">
-              <span style="font-family:'Playfair Display',Georgia,serif; font-size:4rem; font-weight:800; color:var(--gold); opacity:0.45; position:absolute; left:0.15rem; top:-0.6rem; line-height:1;">"</span>
-              <p style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:0.98rem; line-height:1.55; color:var(--ink-m); margin:0;">«El control mecánico combinado con aclareo silvícola protege al arbolado durante 5 a 7 años — la opción con mayor durabilidad documentada en campo.»</p>
+              <span style="font-family:'Source Serif 4',Georgia,serif; font-size:4rem; font-weight:800; color:var(--gold); opacity:0.45; position:absolute; left:0.15rem; top:-0.6rem; line-height:1;">"</span>
+              <p style="font-family:'Source Serif 4',Georgia,serif; font-style:italic; font-size:0.98rem; line-height:1.55; color:var(--ink-m); margin:0;">«El control mecánico combinado con aclareo silvícola protege al arbolado durante 5 a 7 años — la opción con mayor durabilidad documentada en campo.»</p>
               <cite style="display:block; margin-top:0.6rem; font-family:'Raleway',sans-serif; font-style:normal; font-size:0.7rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--green-m);">Flores-Flores et al. (2016) &#8212; INIFAP/UAAAN</cite>
             </blockquote>
             <h4 style="margin-bottom:0.8rem;color:var(--green);">Protocolo silvícola</h4>
