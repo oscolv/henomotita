@@ -796,6 +796,12 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   .hero-stat .num { font-size: 1.9rem; }
   .hero-stat .lbl { font-size: 0.72rem; }
   .hero-badge { font-size: 0.66rem; padding: 4px 9px; }
+  .hero-ficha { max-width: 100%; margin: 1.1rem 0 1.5rem; }
+  .ficha-row { flex-direction: column; gap: 0.1rem; padding: 0.6rem 0; }
+  .ficha-label { min-width: auto; }
+  .hero-btns-primary { flex-direction: column; gap: 0.65rem; }
+  .hero-btns-primary .btn { width: 100%; justify-content: center; padding: 15px 24px; font-size: 0.9rem; }
+  .hero-btns-pdf { display: flex; justify-content: center; padding: 12px 0; border-bottom: none; border-top: 1px solid rgba(212,146,44,0.3); margin-top: 0.25rem; }
 
   /* Cards */
   .cards-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -1117,6 +1123,42 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   .hero-stat:first-child { padding-left: 0; }
   .hero-stat:last-child { border-right: none; }
 }
+
+/* ─── HERO FICHA DE IDENTIFICACIÓN ─── */
+.hero-ficha {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--r-m);
+  padding: 0.85rem 1.1rem;
+  margin: 1.5rem 0 2rem;
+  max-width: 560px;
+}
+.ficha-row {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  padding: 0.48rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.87rem; line-height: 1.4;
+}
+.ficha-row:last-child { border-bottom: none; }
+.ficha-label {
+  font-family: 'Raleway', sans-serif; font-size: 0.66rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-l); flex-shrink: 0; min-width: 132px;
+}
+.ficha-value { color: rgba(255,255,255,0.88); }
+.ficha-value em { font-style: italic; font-family: 'Lora', serif; color: rgba(255,255,255,0.88); }
+
+.hero-btns-primary { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+
+.hero-btns-pdf {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 0.82rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold-l); text-decoration: none;
+  padding: 5px 0; border-bottom: 1px solid rgba(212,146,44,0.38);
+  transition: color var(--t), border-color var(--t);
+}
+.hero-btns-pdf:hover { color: var(--white); border-bottom-color: rgba(255,255,255,0.5); }
 </style>
 </head>
 <body>
@@ -1194,17 +1236,36 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   <div class="hero-content">
     <div class="hero-split">
       <div>
-        <p class="hero-eyebrow">Guía de Manejo Científico · Hidalgo, México</p>
-        <h1>El <em>Heno Motita</em> Amenaza Nuestros Mezquites</h1>
-        <p class="hero-sub">Información científica validada para el control y prevención de <em>Tillandsia recurvata</em> en el Valle del Mezquital.</p>
-        <div class="hero-btns">
-          <a href="#metodos" class="btn btn-primary">Ver Métodos de Control →</a>
-          <a href="#unete" class="btn btn-outline">Únete a una Brigada</a>
-          <a href="taller-01-heno-motita.pdf" download class="btn btn-outline" style="border-color:rgba(212,146,44,0.5);color:var(--gold-l);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Descargar Guía PDF
-          </a>
+        <p class="hero-eyebrow">Heno Motita · Valle del Mezquital</p>
+        <h1>Una planta pequeña que <em>debilita y puede secar los mezquites</em> del Valle</h1>
+        <p class="hero-sub">Identifica, previene y controla <em>Tillandsia recurvata</em> en municipios del Valle del Mezquital, Hidalgo.</p>
+        <div class="hero-ficha" role="complementary" aria-label="Ficha de identificación">
+          <div class="ficha-row">
+            <span class="ficha-label">Nombre científico</span>
+            <span class="ficha-value"><em>Tillandsia recurvata</em></span>
+          </div>
+          <div class="ficha-row">
+            <span class="ficha-label">Nombres comunes</span>
+            <span class="ficha-value">heno motita, paxtle, gallitos, ball moss</span>
+          </div>
+          <div class="ficha-row">
+            <span class="ficha-label">Región</span>
+            <span class="ficha-value">Valle del Mezquital, Hidalgo</span>
+          </div>
+          <div class="ficha-row">
+            <span class="ficha-label">Enfoque</span>
+            <span class="ficha-value">identificación, prevención y control</span>
+          </div>
         </div>
+        <div class="hero-btns-primary">
+          <a href="#que-es" class="btn btn-primary">Identificar heno motita</a>
+          <a href="#metodos" class="btn btn-outline">Ver métodos de control</a>
+          <a href="#unete" class="btn btn-outline">Unirme a una brigada</a>
+        </div>
+        <a href="taller-01-heno-motita.pdf" download class="hero-btns-pdf">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar guía PDF
+        </a>
       </div>
       <div class="hero-illustration" aria-hidden="false">
         <figure style="margin:0;width:100%;border-radius:var(--r-l);overflow:hidden;
@@ -1215,7 +1276,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
           <figcaption style="background:rgba(0,0,0,0.55);color:rgba(255,255,255,0.60);
                              font-family:'Raleway',sans-serif;font-size:0.72rem;
                              padding:0.45rem 0.9rem;letter-spacing:0.03em;font-style:italic;">
-            <em>Tillandsia recurvata</em> — cápsulas con semillas plumosas
+            <em>Tillandsia recurvata</em> (heno motita) — cápsulas abiertas con semillas plumosas listas para dispersarse
           </figcaption>
         </figure>
       </div>
