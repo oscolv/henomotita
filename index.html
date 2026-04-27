@@ -1181,6 +1181,130 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 }
 .hero-btns-pdf:hover { color: var(--white); border-bottom-color: rgba(255,255,255,0.5); }
 
+/* ─── NIVEL DE INFESTACIÓN ─── */
+.decision-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.decision-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--green-m);
+  border-radius: var(--r-l);
+  padding: 1.45rem;
+  box-shadow: var(--shadow-s);
+  display: flex;
+  flex-direction: column;
+}
+
+.decision-bajo   { border-top-color: var(--green-m); }
+.decision-medio  { border-top-color: var(--gold); }
+.decision-alto   { border-top-color: var(--ochre); }
+.decision-riesgo { border-top-color: var(--red); }
+
+.decision-level {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0.85rem;
+}
+
+.dl-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(30,61,10,0.12);
+  flex-shrink: 0;
+}
+
+.decision-bajo   .dl-dot.dl-filled { background: var(--green-m); }
+.decision-medio  .dl-dot.dl-filled { background: var(--gold); }
+.decision-alto   .dl-dot.dl-filled { background: var(--ochre); }
+.decision-riesgo .dl-dot.dl-filled { background: var(--red); }
+
+.decision-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.65rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  margin-bottom: 0.3rem; display: block;
+}
+
+.decision-bajo   .decision-label { color: var(--green-m); }
+.decision-medio  .decision-label { color: #7A6200; }
+.decision-alto   .decision-label { color: var(--ochre); }
+.decision-riesgo .decision-label { color: var(--red); }
+
+.decision-card h3 {
+  color: var(--ink); font-size: 1rem;
+  margin-bottom: 0.6rem; line-height: 1.25;
+}
+
+.decision-card > p {
+  color: var(--ink-m); font-size: 0.93rem;
+  line-height: 1.6; margin-bottom: 0.85rem;
+  flex-grow: 1;
+}
+
+.decision-action {
+  background: var(--sand);
+  border-radius: var(--r-s);
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.da-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.62rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-l); display: block; margin-bottom: 0.3rem;
+}
+
+.decision-action p {
+  font-size: 0.88rem; color: var(--ink);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700; line-height: 1.45; margin: 0;
+}
+
+.decision-signal {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.8rem; font-weight: 700;
+  border-radius: var(--r-s);
+  padding: 0.5rem 0.7rem;
+  margin-top: auto; line-height: 1.5; display: block;
+}
+
+.decision-bajo   .decision-signal { color: var(--green-m);  background: #EBF3E0; }
+.decision-medio  .decision-signal { color: #7A6200;          background: #FBF3E0; }
+.decision-alto   .decision-signal { color: var(--ochre);     background: #FEF1E0; }
+.decision-riesgo .decision-signal { color: var(--red);       background: var(--red-bg); }
+
+.decision-strip {
+  background: var(--forest);
+  color: rgba(255,255,255,0.88);
+  border-radius: var(--r-l);
+  padding: 1.35rem 1.6rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.93rem;
+  line-height: 1.7;
+}
+
+.decision-strip strong { color: var(--gold-l); font-weight: 800; }
+
+.decision-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+@media(min-width: 700px) {
+  .decision-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(min-width: 1100px) {
+  .decision-grid { grid-template-columns: repeat(4, 1fr); }
+  .decision-card > p { font-size: 0.9rem; }
+}
+@media(max-width: 767px) {
+  .decision-actions { flex-direction: column; }
+  .decision-actions .btn { width: 100%; justify-content: center; }
+}
+
 /* ─── GUÍA RÁPIDA PARA BRIGADAS ─── */
 .quick-guide { background: var(--sand); }
 
@@ -1551,6 +1675,100 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
     <div class="quick-actions reveal">
       <a href="#protocolo-brigadistas" class="btn btn-primary">Ver protocolo completo</a>
       <a href="taller-01-heno-motita.pdf" class="btn btn-outline">Descargar guía técnica</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ NIVEL DE INFESTACIÓN ═══════════════════════════════════ -->
+<section id="nivel-infestacion" class="section" style="overflow:hidden;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="badge-science">Diagnóstico en campo</div>
+      <h2>¿Qué nivel de infestación tiene el árbol?</h2>
+      <div class="divider"></div>
+      <p class="sh-lead">Clasifica rápidamente qué tan afectado está el árbol y decide qué hacer.</p>
+    </div>
+
+    <div class="decision-grid reveal">
+
+      <article class="decision-card decision-bajo">
+        <div class="decision-level" aria-label="Nivel 1 de 4">
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot"></span>
+          <span class="dl-dot"></span>
+          <span class="dl-dot"></span>
+        </div>
+        <p class="decision-label">Nivel bajo</p>
+        <h3>Pocas motitas dispersas</h3>
+        <p>Hay bolitas o mechones aislados en pocas ramas. El árbol conserva follaje y no se observan ramas secas importantes.</p>
+        <div class="decision-action">
+          <span class="da-label">Qué hacer</span>
+          <p>Registrar el árbol y programar revisión en la siguiente jornada. No requiere intervención urgente.</p>
+        </div>
+        <span class="decision-signal">Si tienes que acercarte para encontrarlo, es nivel bajo. Registra igualmente.</span>
+      </article>
+
+      <article class="decision-card decision-medio">
+        <div class="decision-level" aria-label="Nivel 2 de 4">
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot"></span>
+          <span class="dl-dot"></span>
+        </div>
+        <p class="decision-label">Nivel medio</p>
+        <h3>Varias ramas con heno</h3>
+        <p>El heno aparece en varias ramas, especialmente en las partes bajas y ramas delgadas. Se nota a simple vista sin necesidad de acercarse mucho.</p>
+        <div class="decision-action">
+          <span class="da-label">Qué hacer</span>
+          <p>Programar retiro manual en la próxima jornada. Priorizar las partes bajas de las ramas.</p>
+        </div>
+        <span class="decision-signal">Si lo ves de lejos pero el árbol tiene follaje sano, es momento de programar retiro.</span>
+      </article>
+
+      <article class="decision-card decision-alto">
+        <div class="decision-level" aria-label="Nivel 3 de 4">
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot"></span>
+        </div>
+        <p class="decision-label">Nivel alto</p>
+        <h3>Muchas ramas cubiertas</h3>
+        <p>El heno domina visualmente varias ramas o una parte importante de la copa. Puede haber ramas con poco follaje o signos de debilitamiento.</p>
+        <div class="decision-action">
+          <span class="da-label">Qué hacer</span>
+          <p>Priorizar este árbol en la campaña. Retirar con brigada capacitada y valorar tratamiento complementario.</p>
+        </div>
+        <span class="decision-signal">Si el heno domina a primera vista, ese árbol va primero. En temporada seca, el daño aumenta.</span>
+      </article>
+
+      <article class="decision-card decision-riesgo">
+        <div class="decision-level" aria-label="Nivel 4 de 4">
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot dl-filled"></span>
+          <span class="dl-dot dl-filled"></span>
+        </div>
+        <p class="decision-label">Nivel crítico o riesgo físico</p>
+        <h3>Ramas secas, altura, cables o vía pública</h3>
+        <p>Hay ramas secas o quebradizas, el árbol está muy debilitado, o existe riesgo por altura, cables eléctricos o paso de personas y vehículos. Cualquiera de estas condiciones es suficiente.</p>
+        <div class="decision-action">
+          <span class="da-label">Qué hacer</span>
+          <p>No intervenir sin apoyo. Registrar y notificar al responsable de brigada o autoridad municipal.</p>
+        </div>
+        <span class="decision-signal">Si hay riesgo de caída, descarga eléctrica o accidente, no actúa la brigada comunitaria sola.</span>
+      </article>
+
+    </div>
+
+    <div class="decision-strip reveal">
+      <strong>Regla simple para campo:</strong> si es poco, registra. Si ya se nota, programa el retiro. Si cubre muchas ramas o hay ramas en declive, prioriza. Si hay cables, altura, ramas secas o riesgo para personas, pide apoyo.
+    </div>
+
+    <div class="decision-actions reveal">
+      <a href="#guia-brigadas" class="btn btn-outline">Ver guía rápida para brigadas</a>
+      <a href="#protocolo-brigadistas" class="btn btn-primary">Ver protocolo completo</a>
     </div>
 
   </div>
