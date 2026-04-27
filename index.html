@@ -1180,6 +1180,154 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   transition: color var(--t), border-color var(--t);
 }
 .hero-btns-pdf:hover { color: var(--white); border-bottom-color: rgba(255,255,255,0.5); }
+
+/* ─── GUÍA RÁPIDA PARA BRIGADAS ─── */
+.quick-guide { background: var(--sand); }
+
+.quick-guide-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quick-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--green-m);
+  border-radius: var(--r-l);
+  padding: 1.45rem;
+  box-shadow: var(--shadow-s);
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--r-m);
+  background: var(--linen);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.quick-card h3 {
+  color: var(--green);
+  margin-bottom: 0.55rem;
+  font-size: 1.08rem;
+}
+
+.quick-card p {
+  color: var(--ink-m);
+  font-size: 1rem;
+  line-height: 1.62;
+  margin-bottom: 0.75rem;
+}
+
+.quick-card-note {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.82rem !important;
+  font-weight: 700;
+  color: var(--ochre) !important;
+  background: #FFF8EA;
+  border-radius: var(--r-s);
+  padding: 0.55rem 0.75rem;
+  margin-top: auto;
+  margin-bottom: 0 !important;
+  display: block;
+}
+
+.quick-alert {
+  margin-top: 1.5rem;
+  background: #FFF8EA;
+  border: 1px solid rgba(184,116,26,0.28);
+  border-left: 4px solid var(--ochre);
+  border-radius: var(--r-m);
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.quick-alert-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 1px; }
+
+.quick-alert p {
+  color: var(--ink-m);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.quick-alert strong { color: var(--ochre); }
+
+.quick-materials {
+  margin-top: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-l);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-s);
+}
+
+.quick-materials h3 { color: var(--green); margin-bottom: 0.4rem; font-size: 1.1rem; }
+
+.quick-materials > p {
+  color: var(--ink-m);
+  font-size: 0.98rem;
+  max-width: 65ch;
+  margin-bottom: 1rem;
+}
+
+.quick-materials-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.quick-material-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0.45rem 0.85rem;
+  background: var(--linen);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-m);
+}
+
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.quick-guide .btn-outline {
+  color: var(--green);
+  border-color: rgba(30,61,10,0.35);
+}
+.quick-guide .btn-outline:hover {
+  color: var(--white);
+  background: var(--green);
+  border-color: var(--green);
+}
+
+@media(min-width: 700px) {
+  .quick-guide-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(min-width: 1024px) {
+  .quick-guide-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media(max-width: 767px) {
+  .quick-card { padding: 1.25rem; }
+  .quick-card p { font-size: 0.98rem; }
+  .quick-alert { flex-direction: column; gap: 0.5rem; }
+  .quick-actions { flex-direction: column; }
+  .quick-actions .btn { width: 100%; justify-content: center; }
+}
 </style>
 </head>
 <body>
@@ -1221,6 +1369,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
       <li><a href="#seguridad">Seguridad</a></li>
       <li><a href="#errores">Errores</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#guia-brigadas">Brigadistas</a></li>
       <li><a href="#unete" class="nav-cta">Únete</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -1237,6 +1386,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   <a href="#prevencion" class="mobile-link">Prevención</a>
   <a href="#errores" class="mobile-link">Errores Comunes</a>
   <a href="#faq" class="mobile-link">Preguntas Frecuentes</a>
+  <a href="#guia-brigadas" class="mobile-link">Guía para Brigadistas</a>
   <a href="#referencias" class="mobile-link">Referencias</a>
   <a href="#unete" class="mobile-link mobile-cta">Únete a la Brigada</a>
 </nav>
@@ -1320,6 +1470,89 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
         <div class="lbl">reducción con manejo silvícola (INIFAP 2016)</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ GUÍA RÁPIDA ═══════════════════════════════════ -->
+<section id="guia-brigadas" class="section quick-guide" style="overflow:hidden;">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="badge-science">Guía de campo</div>
+      <h2>Guía rápida para brigadas</h2>
+      <div class="divider" style="margin:1rem 0 0;"></div>
+      <p class="sh-lead">Pasos básicos para reconocer el heno motita, actuar con seguridad y evitar errores comunes en campo.</p>
+    </div>
+
+    <div class="quick-guide-grid reveal">
+
+      <article class="quick-card">
+        <div class="quick-card-icon" aria-hidden="true">🔍</div>
+        <h3>¿Cómo reconocerlo?</h3>
+        <p>Se ve como bolitas o mechones gris verdosos pegados a ramas, cables o copas de árboles. Vive sobre el árbol: no nace del suelo.</p>
+        <span class="quick-card-note">Revisa primero ramas delgadas y partes bajas.</span>
+      </article>
+
+      <article class="quick-card">
+        <div class="quick-card-icon" aria-hidden="true">📅</div>
+        <h3>¿Cuándo actuar?</h3>
+        <p>Actúa cuando cubre muchas ramas, cuando ocupa gran parte de una rama, o cuando ves ramas secas, débiles o con daño visible.</p>
+        <span class="quick-card-note">Mejor época: enero a abril.</span>
+      </article>
+
+      <article class="quick-card">
+        <div class="quick-card-icon" aria-hidden="true">🛠️</div>
+        <h3>¿Qué hacer primero?</h3>
+        <p>Primero retira el heno con cuidado. Usa herramienta adecuada y evita romper ramas sanas. Después puede aplicarse tratamiento complementario si la brigada lo indica.</p>
+        <span class="quick-card-note">Primero retirar; luego complementar.</span>
+      </article>
+
+      <article class="quick-card">
+        <div class="quick-card-icon" aria-hidden="true">🚫</div>
+        <h3>¿Qué NO hacer?</h3>
+        <p>No lo dejes tirado. No arranques ramas sanas. No apliques químicos sin orientación. No trabajes en árboles altos o junto a cables sin apoyo.</p>
+        <span class="quick-card-note">Si hay riesgo, pide ayuda.</span>
+      </article>
+
+      <article class="quick-card">
+        <div class="quick-card-icon" aria-hidden="true">🙋</div>
+        <h3>¿Cuándo pedir apoyo?</h3>
+        <p>Pide apoyo si el árbol está alto, seco, junto a cables, en vía pública, o si muchas ramas están cubiertas.</p>
+        <span class="quick-card-note">También si no tienes herramienta o capacitación.</span>
+      </article>
+
+      <article class="quick-card">
+        <div class="quick-card-icon" aria-hidden="true">🛍️</div>
+        <h3>¿Qué hacer con lo retirado?</h3>
+        <p>Embólsalo de inmediato. No lo dejes tirado ni lo transportes abierto. Sigue el protocolo local de disposición para evitar que vuelva a dispersarse.</p>
+        <span class="quick-card-note">El material retirado puede seguir viable varios meses.</span>
+      </article>
+
+    </div>
+
+    <div class="quick-alert reveal">
+      <div class="quick-alert-icon" aria-hidden="true">⚠️</div>
+      <p><strong>Importante:</strong> no dejes el heno retirado en el suelo. Embólsalo de inmediato y sigue el protocolo de disposición de la brigada.</p>
+    </div>
+
+    <div class="quick-materials reveal">
+      <h3>Material básico para una brigada</h3>
+      <p>Antes de salir, revisa que la brigada lleve lo mínimo para trabajar con seguridad.</p>
+      <div class="quick-materials-grid">
+        <span class="quick-material-item">✓ Guantes de trabajo</span>
+        <span class="quick-material-item">✓ Gafas o protección ocular</span>
+        <span class="quick-material-item">✓ Cubrebocas si hay polvo o aspersión</span>
+        <span class="quick-material-item">✓ Herramienta adecuada para retiro</span>
+        <span class="quick-material-item">✓ Bolsas resistentes</span>
+        <span class="quick-material-item">✓ Formato de registro por árbol</span>
+        <span class="quick-material-item">✓ Agua, sombrero o gorra</span>
+      </div>
+    </div>
+
+    <div class="quick-actions reveal">
+      <a href="#protocolo-brigadistas" class="btn btn-primary">Ver protocolo completo</a>
+      <a href="taller-01-heno-motita.pdf" class="btn btn-outline">Descargar guía técnica</a>
+    </div>
+
   </div>
 </section>
 
@@ -2315,10 +2548,149 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
   </div>
 </section>
 
+<!-- ═══════════════════════════════════ PROTOCOLO BRIGADISTAS ═══════════════════════════════════ -->
+<section id="protocolo-brigadistas" class="section" style="overflow:hidden;">
+  <div class="container">
+    <div class="section-wm" aria-hidden="true">VII</div>
+    <div class="section-header reveal">
+      <div class="badge-science">Protocolo técnico</div>
+      <h2>Protocolo completo para brigadistas</h2>
+      <div class="divider" style="margin:1rem 0 0;"></div>
+      <p class="sh-lead">Consulta técnica para organizar jornadas de control, revisar métodos, seguridad y disposición del material retirado.</p>
+    </div>
+
+    <!-- Regla de prioridad -->
+    <div class="alert-card reveal" style="margin-top:0;margin-bottom:2.5rem;">
+      <div class="alert-icon">🎯</div>
+      <div>
+        <h4>¿Qué árbol atender primero?</h4>
+        <p>Prioriza los árboles más infestados, especialmente cuando hay <strong>ramas con más de la mitad de su longitud cubierta</strong>. Estos árboles suelen dispersar semillas hacia los vecinos, por lo que atenderlos primero protege toda la zona. <cite>(Flores-Palacios 2014; Valverde &amp; Bernal 2010)</cite></p>
+      </div>
+    </div>
+
+    <!-- Tarjetas de protocolo -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;margin-bottom:2.5rem;" class="reveal">
+
+      <!-- Mecánico -->
+      <div class="card" style="border-top-color:var(--green);">
+        <div class="method-header" style="padding-bottom:1rem;margin-bottom:1.25rem;">
+          <div class="method-icon">🔩</div>
+          <div>
+            <h3 style="font-size:1.05rem;">Extracción Mecánica</h3>
+            <p>Varilla corrugada · Recomendado por INIFAP</p>
+          </div>
+        </div>
+        <ol class="steps-list">
+          <li>Varilla de acero corrugada <strong>3/8" × 2–3 m</strong>, punta doblada ~90°</li>
+          <li>Insertar la punta entre el <strong>cúmulo y la rama</strong></li>
+          <li>Girar y torcer para extraer el epífito <strong>sin cortar la rama</strong></li>
+          <li><strong>Ensacar inmediatamente</strong> — el material separado mantiene viabilidad hasta 6 meses</li>
+          <li>Sellar la bolsa y trasladar al sitio de quema ese mismo día</li>
+        </ol>
+        <div class="tip-box">
+          <strong>Protección: 5–7 años</strong> con remoción completa. Más económico que la poda (INIFAP). No genera heridas que requieran cicatrizante.
+        </div>
+      </div>
+
+      <!-- Químico -->
+      <div class="card" style="border-top-color:var(--ochre);">
+        <div class="method-header" style="padding-bottom:1rem;margin-bottom:1.25rem;">
+          <div class="method-icon" style="background:#F8EDD8;">💧</div>
+          <div>
+            <h3 style="font-size:1.05rem;">Aspersión de Bicarbonato</h3>
+            <p>Complemento — después de la remoción mecánica</p>
+          </div>
+        </div>
+        <div style="background:rgba(184,116,26,0.08);border:1px solid rgba(184,116,26,0.22);border-radius:var(--r-s);padding:0.9rem 1.1rem;margin-bottom:1.1rem;">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ochre);margin-bottom:0.35rem;">Dosis de referencia — INIFAP México</p>
+          <p style="font-family:'Raleway',sans-serif;font-weight:800;font-size:1.15rem;color:var(--ink);margin:0;">1 kg / 15 L</p>
+          <p style="font-size:0.8rem;color:var(--ink-l);margin:0.2rem 0 0;">bicarbonato de sodio por mochila aspersora (≈ 66 g/L)</p>
+        </div>
+        <ol class="steps-list">
+          <li>Disolver completamente el bicarbonato antes de cargar la mochila</li>
+          <li><strong>Agitar constantemente</strong> durante la aplicación (evita obstrucción de boquillas)</li>
+          <li>Asperjar hasta <strong>saturación completa</strong> — no solo superficialmente</li>
+          <li>Solo en <strong>temporada seca</strong> — la lluvia anula el efecto</li>
+        </ol>
+        <div class="warning-box">
+          <h4>⚠ Sin remoción mecánica el efecto es temporal</h4>
+          <p>La planta inicia recuperación ~1 semana después de terminar 9 semanas de tratamiento químico. <cite>UTTT 2024</cite></p>
+        </div>
+      </div>
+
+      <!-- Disposición + Seguimiento -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div class="card" style="border-top-color:var(--red);">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--red);margin-bottom:1rem;">Disposición del material (CONAFOR)</p>
+          <div style="display:flex;flex-direction:column;gap:0.65rem;">
+            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="width:22px;height:22px;border-radius:50%;background:var(--green);color:white;font-family:'Raleway',sans-serif;font-weight:800;font-size:0.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</span>
+              <p style="font-size:0.88rem;color:var(--ink-m);margin:0;line-height:1.55;"><strong>Embolsar inmediatamente</strong> en bolsa de polietileno sellada</p>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="width:22px;height:22px;border-radius:50%;background:var(--green);color:white;font-family:'Raleway',sans-serif;font-weight:800;font-size:0.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</span>
+              <p style="font-size:0.88rem;color:var(--ink-m);margin:0;line-height:1.55;"><strong>Quemar</strong> — las cenizas son fertilizante (fuera de zona industrial)</p>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="color:var(--red);font-weight:800;flex-shrink:0;font-size:1rem;line-height:1.4;">✗</span>
+              <p style="font-size:0.88rem;color:var(--ink-m);margin:0;line-height:1.55;">No dejar en suelo · no transportar abierto · no vender como adorno</p>
+            </div>
+          </div>
+          <p style="font-size:0.75rem;color:var(--ink-l);margin-top:0.85rem;border-top:1px solid var(--rule-l);padding-top:0.65rem;">Zona Tula-Tepeji: tratar el material como residuo potencialmente contaminado por metales pesados (Pb, Cd). <cite>Reséndiz-Vega &amp; Sánchez-Trujillo 2021</cite></p>
+        </div>
+
+        <div class="card" style="border-top-color:var(--green-m);">
+          <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--green-m);margin-bottom:1rem;">Seguimiento post-tratamiento</p>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="flex-shrink:0;font-size:1rem;line-height:1.5;">📅</span>
+              <p style="font-size:0.88rem;color:var(--ink-m);margin:0;"><strong>A los 12 meses</strong>: primera inspección de reinfestación</p>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="flex-shrink:0;font-size:1rem;line-height:1.5;">🔄</span>
+              <p style="font-size:0.88rem;color:var(--ink-m);margin:0;"><strong>Cada 4–6 meses</strong>: mantenimiento preventivo</p>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="flex-shrink:0;font-size:1rem;line-height:1.5;">👁️</span>
+              <p style="font-size:0.88rem;color:var(--ink-m);margin:0;"><strong>Zona clave</strong>: parte baja de las ramas — primera en recolonizar <cite>(Flores-Flores 2016)</cite></p>
+            </div>
+          </div>
+          <p style="font-size:0.76rem;color:var(--ink-l);margin-top:0.75rem;border-top:1px solid var(--rule-l);padding-top:0.65rem;">Sin coordinación con árboles vecinos: reinfestación en &lt;1 año.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Calendario de intervención -->
+    <div class="reveal">
+      <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ochre);margin-bottom:1.1rem;display:flex;align-items:center;gap:10px;"><span style="display:block;width:28px;height:2px;background:var(--ochre);flex-shrink:0;"></span>Calendario de Intervención</p>
+      <div class="season-grid">
+        <div class="season-card optimal">
+          <span class="s-label">✓ Enero–Abril · Temporada Óptima</span>
+          <p>Intervención principal. Árboles en reposo, antes de la dispersión de semillas. Tricomas más activas para absorber el bicarbonato. Aplican todos los métodos.</p>
+        </div>
+        <div class="season-card secondary">
+          <span class="s-label">≈ Mayo–Junio · Aceptable</span>
+          <p>Ventana secundaria si se perdió la primera. Solo antes de la floración.</p>
+        </div>
+        <div class="season-card avoid">
+          <span class="s-label">✗ Julio–Septiembre · Evitar aspersiones</span>
+          <p>La lluvia diluye los productos y anula el efecto. Solo mapeo y registro de nuevas infestaciones.</p>
+        </div>
+        <div class="season-card plan">
+          <span class="s-label">→ Octubre–Diciembre · Planear</span>
+          <p>Evaluar efectividad de la campaña. Planear la siguiente. Coordinar con ejidos y cuadras vecinas.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════ ÚNETE ═══════════════════════════════════ -->
 <section id="unete" class="section section-dark" style="overflow:hidden;">
   <div class="container">
-    <div class="section-wm" aria-hidden="true">VII</div>
+    <div class="section-wm" aria-hidden="true">VIII</div>
     <div class="section-header reveal">
       <div class="badge-science" style="background:rgba(196,134,42,0.2); border-color:rgba(196,134,42,0.4); color:var(--gold-l);">Acción Comunitaria</div>
       <h2>Actúa. El Mezquite Necesita Tu Ayuda.</h2>
@@ -2473,7 +2845,7 @@ footer { background: #0D1C04; color: rgba(255,255,255,0.65); padding: 4rem 0 2re
 <!-- ═══════════════════════════════════ REFERENCIAS ═══════════════════════════════════ -->
 <section id="referencias" class="section" style="overflow:hidden;">
   <div class="container">
-    <div class="section-wm" aria-hidden="true">VIII</div>
+    <div class="section-wm" aria-hidden="true">IX</div>
     <div class="section-header reveal">
       <div class="badge-science">Evidencia Científica</div>
       <h2>Respaldo Científico</h2>
