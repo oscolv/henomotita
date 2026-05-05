@@ -920,6 +920,10 @@ footer {
 @media(max-width:767px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  .nav-inner { padding: 0 1rem; }
+  .nav-logo { font-size: 0.78rem; gap: 8px; }
+  .nav-logo svg { width: 24px; height: 24px; }
+  .nav-logo-loc { display: none; }
 
   .section { padding: 2.75rem 0; }
   .section-header { margin-bottom: 2rem; }
@@ -1584,7 +1588,7 @@ footer {
         <ellipse cx="12" cy="23" rx="3.5" ry="5.5" fill="#4A7C2F" opacity="0.6" transform="rotate(-40 12 23)"/>
         <ellipse cx="28" cy="23" rx="3.5" ry="5.5" fill="#4A7C2F" opacity="0.6" transform="rotate(40 28 23)"/>
       </svg>
-      Heno Motita · Valle del Mezquital
+      Heno Motita<span class="nav-logo-loc"> · Valle del Mezquital</span>
     </a>
     <ul class="nav-links" role="list">
       <li><a href="#que-es">¿Qué es?</a></li>
