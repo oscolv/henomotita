@@ -113,7 +113,9 @@ small { font-size: 0.85em; color: var(--corteza); }
   .section--cta   { padding: 6rem 0; }
 }
 
-/* Bloques nuevos: nota-campo y ficha-tecnica */
+/* Bloques permitidos por DESIGN_RULES §2.2:
+   .nota-campo (aside con border-left), .ficha-tecnica (datos con border completo).
+   Todo "caja con borde" del sitio deriva de éstos con modificadores. */
 .nota-campo {
   border-left: 3px solid var(--heno-seco);
   background: var(--papel-alt);
@@ -126,6 +128,46 @@ small { font-size: 0.85em; color: var(--corteza); }
   font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--corteza); margin-bottom: 0.35rem; display: block;
 }
+.nota-campo p { margin: 0; }
+
+/* Variantes por color (border-left + título) */
+.nota-campo--warning { border-left-color: var(--terracota); }
+.nota-campo--warning .nota-titulo { color: var(--terracota); }
+.nota-campo--tip { border-left-color: var(--mezquite-oscuro); }
+.nota-campo--tip .nota-titulo { color: var(--mezquite-oscuro); }
+.nota-campo--alert { border-left-color: var(--rojo-alerta); }
+.nota-campo--alert .nota-titulo { color: var(--rojo-alerta); }
+
+/* Variante "stat": número grande destacado dentro del aside */
+.nota-campo--stat { padding: 1.5rem 1.5rem; }
+.nota-campo--stat .nota-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 7vw, 4rem); font-weight: 600;
+  color: var(--mezquite-oscuro); line-height: 1; letter-spacing: -0.02em;
+  display: block;
+}
+.nota-campo--stat p {
+  font-family: var(--font-mono);
+  font-size: 0.78rem; margin-top: 0.65rem;
+  letter-spacing: 0.02em; line-height: 1.5; color: var(--corteza);
+}
+
+/* Variante "season": tarjeta de calendario fenológico */
+.nota-campo--season {
+  background: var(--papel);
+  border: 1px solid var(--caliza);
+  border-left: 3px solid var(--corteza);
+  padding: 1.1rem 1.2rem;
+}
+.nota-campo--season.optimal   { border-left-color: var(--mezquite-oscuro); }
+.nota-campo--season.optimal   .nota-titulo { color: var(--mezquite-oscuro); }
+.nota-campo--season.secondary { border-left-color: var(--heno-seco); }
+.nota-campo--season.secondary .nota-titulo { color: var(--terracota); }
+.nota-campo--season.avoid     { border-left-color: var(--rojo-alerta); }
+.nota-campo--season.avoid     .nota-titulo { color: var(--rojo-alerta); }
+.nota-campo--season.plan      { border-left-color: var(--azul-grisaceo); }
+.nota-campo--season.plan      .nota-titulo { color: var(--azul-grisaceo); }
+.nota-campo--season p { font-size: 0.92rem; color: var(--tinta); line-height: 1.6; }
 
 .ficha-tecnica {
   border: 1px solid var(--tinta);
@@ -139,6 +181,13 @@ small { font-size: 0.85em; color: var(--corteza); }
   font-family: var(--font-mono);
   font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--tinta);
+}
+/* Variante "soft": border caliza + fondo papel-alt, sin header marcado */
+.ficha-tecnica--soft {
+  border-color: var(--caliza);
+  background: var(--papel-alt);
+  padding: 1.4rem;
+  margin-top: 1.1rem;
 }
 
 /* ─── SECTION HEADER (editorial left-aligned) ─── */
@@ -455,6 +504,23 @@ small { font-size: 0.85em; color: var(--corteza); }
 }
 .field-card p { color: var(--corteza); font-size: 0.95rem; margin: 0; line-height: 1.65; }
 
+/* Variante "split": dos paneles contrastados dentro del field-card (errores comunes) */
+.field-card--split { padding: 0; border-top: 1px solid var(--caliza); overflow: hidden; }
+.field-card--split .field-card__panel { padding: 1.1rem 1.4rem; }
+.field-card--split .field-card__panel--wrong { background: var(--rojo-alerta-bg); }
+.field-card--split .field-card__panel--right { background: #EBF3E0; border-top: 1px solid var(--caliza); }
+.field-card--split .field-card__panel .etiqueta {
+  font-family: var(--font-sans); font-weight: 800; font-size: 0.65rem;
+  letter-spacing: 0.16em; margin-bottom: 0.45rem; color: var(--corteza);
+  display: flex; align-items: center; gap: 6px;
+}
+.field-card--split .field-card__panel--wrong .etiqueta { color: var(--rojo-alerta); }
+.field-card--split .field-card__panel--right .etiqueta { color: var(--mezquite-oscuro); }
+.field-card--split .field-card__panel p {
+  font-size: 0.9rem; margin: 0; line-height: 1.55;
+}
+.field-card--split .field-card__panel--wrong p { color: var(--tinta); font-weight: 500; }
+
 .field-alert {
   background: var(--rojo-alerta-bg);
   border: 1px solid var(--rojo-alerta);
@@ -471,25 +537,6 @@ small { font-size: 0.85em; color: var(--corteza); }
 .field-alert p { font-size: 0.95rem; color: var(--tinta); margin: 0; line-height: 1.55; }
 
 /* ─── PROBLEMA ─── */
-.stat-highlight {
-  background: var(--papel-alt);
-  border: 1px solid var(--caliza);
-  border-left: 4px solid var(--mezquite-oscuro);
-  border-radius: 0; padding: 1.75rem 1.5rem;
-  text-align: left; margin-bottom: 2rem;
-}
-.stat-highlight::before { content: none; }
-.stat-highlight .big-num {
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 7vw, 4rem); font-weight: 600;
-  color: var(--mezquite-oscuro); line-height: 1; letter-spacing: -0.02em;
-}
-.stat-highlight p {
-  color: var(--corteza);
-  font-family: var(--font-mono);
-  font-size: 0.78rem; margin-top: 0.65rem; letter-spacing: 0.02em; line-height: 1.5;
-}
-
 .municipios-grid { display: flex; flex-wrap: wrap; gap: 6px; margin: 1.2rem 0; }
 .muni-tag {
   background: var(--papel); color: var(--tinta);
@@ -509,13 +556,6 @@ small { font-size: 0.85em; color: var(--corteza); }
   content: ''; width: 6px; height: 6px; border-radius: 50%;
   background: var(--terracota); flex-shrink: 0; margin-top: 7px;
 }
-
-.warning-box {
-  background: #FEF5EC; border-left: 3px solid var(--terracota);
-  padding: 1.1rem 1.5rem; margin-top: 1.25rem; border-radius: 0 0 0 0;
-}
-.warning-box h4 { color: var(--terracota); font-size: 0.88rem; margin-bottom: 0.35rem; }
-.warning-box p { font-size: 0.87rem; color: var(--corteza); margin: 0; }
 
 /* ─── TABS / MÉTODOS ─── */
 .tabs-wrapper {
@@ -573,38 +613,8 @@ small { font-size: 0.85em; color: var(--corteza); }
   display: flex; align-items: center; justify-content: center;
 }
 
-.tip-box {
-  background: #EBF3E0; border-left: 3px solid var(--mezquite-oscuro);
-  border-radius: 0 0 0 0;
-  padding: 1rem 1.4rem; margin-top: 1.25rem; font-size: 0.9rem; color: var(--corteza);
-}
-.tip-box strong { color: var(--mezquite-oscuro); }
-
 .calendario-grid { display: grid; gap: 1rem; margin-top: 1.25rem; }
 @media(min-width:600px) { .calendario-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.calendario-fenologico {
-  background: var(--papel);
-  border: 1px solid var(--caliza);
-  border-left: 3px solid var(--corteza);
-  border-radius: 0; padding: 1.1rem 1.2rem;
-}
-.calendario-fenologico.optimal   { border-left-color: var(--mezquite-oscuro); }
-.calendario-fenologico.secondary { border-left-color: var(--heno-seco); }
-.calendario-fenologico.avoid     { border-left-color: var(--rojo-alerta); }
-.calendario-fenologico.plan      { border-left-color: var(--azul-grisaceo); }
-
-.calendario-fenologico .s-label {
-  font-family: var(--font-mono);
-  font-weight: 500; font-size: 0.72rem;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  margin-bottom: 0.5rem; display: block; color: var(--corteza);
-}
-.calendario-fenologico.optimal   .s-label { color: var(--mezquite-oscuro); }
-.calendario-fenologico.secondary .s-label { color: var(--terracota); }
-.calendario-fenologico.avoid     .s-label { color: var(--rojo-alerta); }
-.calendario-fenologico.plan      .s-label { color: var(--azul-grisaceo); }
-.calendario-fenologico p { font-size: 0.92rem; color: var(--tinta); margin: 0; line-height: 1.6; }
 
 .dosage-table { width: 100%; border-collapse: collapse; font-size: 0.87rem; margin: 1.25rem 0; border-radius: 0; overflow: hidden; border: 1px solid var(--caliza); }
 .dosage-table thead tr { background: var(--mezquite-oscuro); }
@@ -616,34 +626,6 @@ small { font-size: 0.85em; color: var(--corteza); }
 /* ─── ERRORES ─── */
 .errores-grid { display: grid; gap: 1.25rem; }
 @media(min-width:768px) { .errores-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.error-card {
-  border: 1px solid var(--caliza);
-  border-radius: 0;
-  overflow: hidden;
-  background: var(--papel);
-}
-
-.error-wrong {
-  background: var(--rojo-alerta-bg); padding: 1.1rem 1.4rem;
-  border-bottom: 1px solid var(--rojo-alerta-bg);
-}
-.error-wrong .label {
-  font-family: var(--font-sans); font-weight: 800; font-size: 0.65rem;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--rojo-alerta); margin-bottom: 0.45rem; display: flex; align-items: center; gap: 6px;
-}
-.error-wrong .label::before { content: none; }
-.error-wrong p { font-size: 0.9rem; color: var(--tinta); margin: 0; font-weight: 500; line-height: 1.55; }
-
-.error-right { background: #EBF3E0; padding: 1.1rem 1.4rem; }
-.error-right .label {
-  font-family: var(--font-sans); font-weight: 800; font-size: 0.65rem;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--mezquite-oscuro); margin-bottom: 0.45rem; display: flex; align-items: center; gap: 6px;
-}
-.error-right .label::before { content: none; }
-.error-right p { font-size: 0.9rem; color: var(--corteza); margin: 0; line-height: 1.55; }
 
 /* ─── FAQ ─── */
 .faq-list { max-width: 840px; margin: 0 auto; }
@@ -692,20 +674,12 @@ small { font-size: 0.85em; color: var(--corteza); }
 @media(min-width:600px) { .campaign-grid { grid-template-columns: repeat(2, 1fr); } }
 @media(min-width:1024px) { .campaign-grid { grid-template-columns: repeat(3, 1fr); } }
 
-.campaign-card {
-  background: var(--papel);
-  border: 1px solid var(--caliza);
-  border-top: 3px solid var(--mezquite-oscuro);
-  border-radius: 0; padding: 1.4rem 1.3rem;
-  transition: border-color var(--t);
-}
-.campaign-card:hover { border-color: var(--corteza); border-top-color: var(--terracota); }
-.campaign-card .c-icon { font-size: 1.4rem; margin-bottom: 0.7rem; display: block; color: var(--mezquite-oscuro); }
-.campaign-card h4 {
+/* Iconos sueltos dentro de field-card (campañas) */
+.field-card .c-icon { font-size: 1.4rem; margin-bottom: 0.7rem; display: block; color: var(--mezquite-oscuro); }
+.field-card h4 {
   color: var(--tinta); font-family: var(--font-serif);
   font-weight: 600; margin-bottom: 0.4rem; font-size: 1.05rem;
 }
-.campaign-card p { color: var(--corteza); font-size: 0.95rem; margin: 0; line-height: 1.55; }
 
 .form-container {
   background: var(--papel); border-radius: 0;
@@ -910,11 +884,6 @@ footer {
 .two-col > * { min-width: 0; }
 @media(min-width:768px) { .two-col { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
 
-.inset-box {
-  background: var(--papel-alt); border: 1px solid var(--caliza);
-  border-radius: 0; padding: 1.4rem; margin-top: 1.1rem;
-}
-
 /* ─── TABLE SCROLL ON MOBILE ─── */
 @media(max-width:640px) {
   .dosage-table { display: block; overflow-x: auto; white-space: nowrap; border-radius: 0; }
@@ -982,8 +951,8 @@ footer {
   .form-container { padding: 1.5rem 1.25rem; border-radius: 0; }
   .form-grid { grid-template-columns: 1fr; }
 
-  /* Stat */
-  .stat-highlight { padding: 1.75rem 1.25rem; }
+  /* Stat (nota-campo--stat) */
+  .nota-campo--stat { padding: 1.5rem 1.25rem; }
 
   /* Two-col */
   .two-col { gap: 1.5rem; }
@@ -991,8 +960,8 @@ footer {
   /* Campaigns */
   .campaign-grid { gap: 0.75rem; }
 
-  /* Inset */
-  .inset-box { padding: 1rem; }
+  /* Ficha-tecnica soft */
+  .ficha-tecnica--soft { padding: 1rem; }
 
   /* Footer */
   .footer-grid { gap: 1.75rem; }
@@ -1111,8 +1080,8 @@ footer {
 }
 #problema .section-header h2 { color: var(--tinta); }
 #problema .sh-lead, #problema > .container > p { color: var(--tinta); }
-#problema .inset-box { background: var(--papel); border: 1px solid var(--caliza); }
-#problema .inset-box h4 { color: var(--mezquite-oscuro); }
+#problema .ficha-tecnica--soft { background: var(--papel); border-color: var(--caliza); }
+#problema .ficha-tecnica--soft h4 { color: var(--mezquite-oscuro); }
 #problema .muni-tag {
   background: var(--papel); color: var(--tinta);
   border-color: var(--caliza);
@@ -1122,12 +1091,10 @@ footer {
 #problema .damage-list strong { color: var(--mezquite-oscuro); }
 #problema .damage-list cite { color: var(--corteza); }
 #problema h3 { color: var(--tinta) !important; }
-#problema .warning-box {
-  background: var(--papel); border: 1px solid var(--caliza); border-left: 3px solid var(--terracota);
-}
-#problema .warning-box h4 { color: var(--terracota); }
-#problema .warning-box p { color: var(--tinta); }
-#problema .stat-highlight { background: var(--papel); }
+#problema .nota-campo--warning { background: var(--papel); border: 1px solid var(--caliza); border-left: 3px solid var(--terracota); }
+#problema .nota-campo--warning .nota-titulo { color: var(--terracota); }
+#problema .nota-campo--warning p { color: var(--tinta); }
+#problema .nota-campo--stat { background: var(--papel); border: 1px solid var(--caliza); border-left: 4px solid var(--mezquite-oscuro); }
 
 /* SVG map container */
 .map-container {
@@ -1250,18 +1217,9 @@ footer {
 }
 .section-errores .section-header h2 { color: var(--tinta); }
 .section-errores .sh-lead { color: var(--corteza); }
-.section-errores .error-card {
-  background: var(--papel); border: 1px solid var(--caliza);
-}
-.section-errores .error-wrong {
-  background: var(--rojo-alerta-bg); border-bottom: 1px solid var(--caliza);
-}
-.section-errores .error-wrong .label { color: var(--rojo-alerta); }
-.section-errores .error-wrong p { color: var(--tinta); }
-.section-errores .error-right { background: var(--papel-alt); }
-.section-errores .error-right .label { color: var(--mezquite-oscuro); }
-.section-errores .error-right p { color: var(--tinta); }
-.section-errores .error-right p strong { color: var(--mezquite-oscuro); }
+.section-errores .field-card--split .field-card__panel--right { background: var(--papel-alt); }
+.section-errores .field-card--split .field-card__panel--right p { color: var(--tinta); }
+.section-errores .field-card--split .field-card__panel--right p strong { color: var(--mezquite-oscuro); }
 
 /* ─── REFERENCE FILTER CHIPS ─── */
 .ref-filters {
@@ -1290,9 +1248,7 @@ footer {
 .sh-lead,
 .section-header > p,
 .faq-a-inner p,
-.inset-box p,
-.warning-box p,
-.tip-box,
+.nota-campo p,
 .field-alert p,
 .damage-list li,
 .steps-list li { max-width: 65ch; }
@@ -2197,8 +2153,8 @@ footer {
               <li><strong>Ensaca inmediatamente</strong> todo el material extraído en bolsa plástica cerrada.</li>
               <li><strong>Quema</strong> el material ensacado. No almacenar ni dejar en el suelo.</li>
             </ul>
-            <div class="tip-box">
-              <strong>¿Por qué no dejarlo en el suelo?</strong> El heno motita separado del árbol sigue siendo viable hasta <strong>6 meses</strong>. Si no se quema puede re-establecerse en el mismo u otro árbol.
+            <div class="nota-campo nota-campo--tip">
+              <p><strong>¿Por qué no dejarlo en el suelo?</strong> El heno motita separado del árbol sigue siendo viable hasta <strong>6 meses</strong>. Si no se quema puede re-establecerse en el mismo u otro árbol.</p>
             </div>
           </div>
           <div>
@@ -2211,8 +2167,9 @@ footer {
               <li>Transporta las ramas en <strong>bolsa sellada</strong> al sitio de quema. No arrastrar por el suelo.</li>
               <li>Quema controlada del material.</li>
             </ul>
-            <div class="tip-box" style="background:#F8EDD8; border-color:rgba(196,134,42,0.25);">
-              <strong style="color:var(--terracota);">Costo comparativo (INIFAP):</strong> La extracción con varilla corrugada es <strong>más económica</strong> que la poda, con efectividad equivalente. Ideal para brigadas con recursos limitados.
+            <div class="nota-campo nota-campo--warning">
+              <span class="nota-titulo">Costo comparativo (INIFAP)</span>
+              <p>La extracción con varilla corrugada es <strong>más económica</strong> que la poda, con efectividad equivalente. Ideal para brigadas con recursos limitados.</p>
             </div>
           </div>
         </div>
@@ -2277,12 +2234,12 @@ footer {
             </ul>
           </div>
           <div>
-            <div class="tip-box" style="background:#FFF8E6; border-color:rgba(196,134,42,0.3); margin-bottom:1rem;">
-              <strong style="color:var(--terracota);">El musgo muerto no cae de inmediato — eso es NORMAL</strong><br>
-              <span style="font-size:0.88rem;">Las plantas muertas pueden permanecer adheridas entre <strong>18 meses y 10 años</strong> antes de desprenderse. Si el material se ve seco y grisáceo-oscuro después del tratamiento, el método funcionó. No vuelvas a aplicar innecesariamente.</span>
+            <div class="nota-campo nota-campo--warning" style="margin-bottom:1rem;">
+              <span class="nota-titulo">El musgo muerto no cae de inmediato — eso es NORMAL</span>
+              <p style="font-size:0.88rem;">Las plantas muertas pueden permanecer adheridas entre <strong>18 meses y 10 años</strong> antes de desprenderse. Si el material se ve seco y grisáceo-oscuro después del tratamiento, el método funcionó. No vuelvas a aplicar innecesariamente.</p>
             </div>
-            <div class="warning-box">
-              <h4>⚠️ Advertencia crítica (UTTT 2024)</h4>
+            <div class="nota-campo nota-campo--warning">
+              <span class="nota-titulo">⚠️ Advertencia crítica (UTTT 2024)</span>
               <p>Con bicarbonato al 10%, las plantas inician su <strong>recuperación a la semana</strong> de terminar un tratamiento de 9 semanas. El control químico aislado no es suficiente. Siempre combinar con remoción mecánica.</p>
             </div>
           </div>
@@ -2300,26 +2257,26 @@ footer {
         </div>
 
         <div class="calendario-grid">
-          <div class="calendario-fenologico optimal">
-            <div class="s-label">Enero – Abril ⭐ Ventana Óptima</div>
+          <div class="nota-campo nota-campo--season optimal">
+            <span class="nota-titulo">Enero – Abril ⭐ Ventana Óptima</span>
             <p><strong>Actúa aquí.</strong> Temporada seca: árboles en reposo o pre-brotación, semillas aún no dispersadas, tricomas del heno más activas (lo que hace más efectivo el bicarbonato), menor riesgo de dañar el árbol. <strong>CONAFOR, INIFAP e investigadores UTTT coinciden: esta es la ventana.</strong></p>
           </div>
-          <div class="calendario-fenologico secondary">
-            <div class="s-label">Mayo – Junio ⬡ Ventana Secundaria</div>
+          <div class="nota-campo nota-campo--season secondary">
+            <span class="nota-titulo">Mayo – Junio ⬡ Ventana Secundaria</span>
             <p>Si se perdió la ventana óptima, aún es viable actuar antes de la floración. Menos efectivo que enero–abril, pero mejor que no hacer nada. Vigilar signos de floración activa.</p>
           </div>
-          <div class="calendario-fenologico avoid">
-            <div class="s-label">Julio – Septiembre ✗ No aspersiones</div>
+          <div class="nota-campo nota-campo--season avoid">
+            <span class="nota-titulo">Julio – Septiembre ✗ No aspersiones</span>
             <p><strong>No aplicar productos químicos.</strong> La lluvia diluye el bicarbonato y los demás agentes, inutilizando el tratamiento. En esta temporada: solo monitoreo visual y mapeo de nuevas infestaciones para planificar.</p>
           </div>
-          <div class="calendario-fenologico plan">
-            <div class="s-label">Octubre – Diciembre 📋 Planificación</div>
+          <div class="nota-campo nota-campo--season plan">
+            <span class="nota-titulo">Octubre – Diciembre 📋 Planificación</span>
             <p>Evalúa los resultados de la campaña anterior. Mapea árboles con nueva infestación. Prepara materiales (varillas, aspersoras, bolsas, bicarbonato). Coordina brigadas. Solicita apoyo CONAFOR PF.1/PF.2 para la siguiente temporada.</p>
           </div>
         </div>
 
-        <div class="tip-box" style="margin-top:1.4rem;">
-          <strong>Clave:</strong> Actúa <em>antes</em> de que las cápsulas de semillas se abran. Una vez que las semillas se dispersan, el daño al área circundante está hecho. La ventana enero–abril coincide exactamente con la pre-dispersión en el Valle del Mezquital. Monitoreo 4–6 meses después de la campaña para detectar reinfestación temprana. <cite>(Recomendación: Bióloga Ruth Chávez, UAQ)</cite>
+        <div class="nota-campo nota-campo--tip" style="margin-top:1.4rem;">
+          <p><strong>Clave:</strong> Actúa <em>antes</em> de que las cápsulas de semillas se abran. Una vez que las semillas se dispersan, el daño al área circundante está hecho. La ventana enero–abril coincide exactamente con la pre-dispersión en el Valle del Mezquital. Monitoreo 4–6 meses después de la campaña para detectar reinfestación temprana. <cite>(Recomendación: Bióloga Ruth Chávez, UAQ)</cite></p>
         </div>
       </div>
 
@@ -2335,11 +2292,11 @@ footer {
 
         <div class="two-col">
           <div>
-            <div class="warning-box" style="border-color:var(--mezquite-oscuro); background:var(--papel-alt);">
-              <h4 style="color:var(--mezquite-oscuro);">Estado actual: sin agente validado</h4>
+            <div class="nota-campo nota-campo--tip">
+              <span class="nota-titulo">Estado actual: sin agente validado</span>
               <p style="font-size:0.9rem;">No existe ningún hongo, insecto ni nematodo desarrollado y validado específicamente para controlar <em>T. recurvata</em>. Esta es una brecha de investigación reconocida en la literatura científica internacional.</p>
             </div>
-            <div class="inset-box" style="margin-top:1rem;">
+            <div class="ficha-tecnica ficha-tecnica--soft">
               <h4 style="color:var(--mezquite-oscuro);margin-bottom:0.7rem;">Candidatos bajo investigación</h4>
               <ul class="damage-list" style="font-size:0.88rem;">
                 <li>Trips (<em>Frankliniella</em> spp.): herbívoros en flores de Tillandsia, efecto supresivo no cuantificado</li>
@@ -2359,7 +2316,7 @@ footer {
               </div>
               <p style="font-size:0.83rem; color:var(--corteza); margin:0.8rem 0 0; padding-top:0.8rem; border-top:1px solid rgba(196,134,42,0.2);">Esto significa que la biomasa removida en campañas mecánicas <strong>tiene valor</strong> como fuente de extractos bioactivos — un incentivo económico adicional para las brigadas.</p>
             </div>
-            <div class="inset-box" style="margin-top:1rem;">
+            <div class="ficha-tecnica ficha-tecnica--soft">
               <h4 style="color:var(--mezquite-oscuro);margin-bottom:0.5rem;">Investigación activa en la región</h4>
               <p style="font-size:0.88rem; color:var(--corteza);">UTTT (Tula-Tepeji), UAEH (Hidalgo) e INIFAP tienen programas de investigación en curso. Contactar estas instituciones para participar en proyectos de biocontrol.</p>
             </div>
@@ -2379,8 +2336,8 @@ footer {
 
         <div class="two-col">
           <div>
-            <div class="stat-highlight" style="padding:1.5rem; margin-bottom:1.2rem;">
-              <div class="big-num" style="font-size:3rem;">86%</div>
+            <div class="nota-campo nota-campo--stat" style="margin-bottom:1.2rem;">
+              <span class="nota-num" style="font-size:3rem;">86%</span>
               <p style="font-size:0.9rem;">reducción de reinfestación con 30% aclareo + 100% poda de ramas infestadas<br><cite style="font-size:0.8rem;">Flores-Flores et al. 2016, INIFAP/UAAAN, experimento 3 años</cite></p>
             </div>
             <blockquote style="border-left:3px solid var(--heno-seco); padding:0.9rem 1.2rem 0.9rem 2.4rem; margin:0 0 1.2rem; position:relative;">
@@ -2404,8 +2361,9 @@ footer {
               <li><strong>Árboles grandes = más resistentes:</strong> El aclareo de árboles débiles deja los más vigorosos, que son menos susceptibles a reinfestación.</li>
               <li><strong>Zona de recolonización:</strong> La parte baja de las ramas (mayor humedad, menor insolación) es donde vuelve primero. Monitorear y tratar esta zona prioritariamente.</li>
             </ul>
-            <div class="tip-box">
-              <strong>Cambio climático y manejo urgente:</strong> Proyecciones para 2030 (+1–2°C) podrían reducir nuevas colonizaciones pero <strong>amplificar el daño</strong> de infestaciones existentes por mayor estrés de sequía en los hospederos. Argumento para intervención urgente en el corto plazo.
+            <div class="nota-campo nota-campo--tip">
+              <span class="nota-titulo">Cambio climático y manejo urgente</span>
+              <p>Proyecciones para 2030 (+1–2°C) podrían reducir nuevas colonizaciones pero <strong>amplificar el daño</strong> de infestaciones existentes por mayor estrés de sequía en los hospederos. Argumento para intervención urgente en el corto plazo.</p>
             </div>
           </div>
         </div>
@@ -2603,90 +2561,90 @@ footer {
 
     <div class="errores-grid reveal">
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error</span>
           <p>Solo aplicar bicarbonato u otro químico sin remoción mecánica</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p>El tratamiento químico <strong>aislado tiene efecto temporal</strong>. La planta inicia recuperación ~1 semana después de terminar 9 semanas de aplicación. La remoción mecánica es el método principal; el químico es un complemento. <cite>(UTTT 2024)</cite></p>
         </div>
       </div>
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error</span>
           <p>Pensar que el tratamiento falló porque el musgo sigue en el árbol</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p>El heno motita muerto puede tardar <strong>18 meses a 10 años</strong> en desprenderse. Si el material está seco y oscurecido, el tratamiento funcionó. No lo toques ni vuelvas a aplicar innecesariamente.</p>
         </div>
       </div>
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error</span>
           <p>Dejar el material removido en el suelo o en montones sin embolsar</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p><strong>Embolsar inmediatamente</strong> en bolsa plástica cerrada. El heno motita separado del árbol sigue siendo viable hasta 6 meses y puede re-establecerse en el mismo árbol u otros cercanos.</p>
         </div>
       </div>
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error</span>
           <p>Tratar solo el árbol visible e ignorar los árboles vecinos</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p>Los árboles vecinos no tratados re-infestan en <strong>menos de 1 año</strong>. Todo el esfuerzo se pierde sin coordinación a escala de ejido o cuadra. El manejo efectivo requiere brigadas coordinadas que cubran toda la zona al mismo tiempo.</p>
         </div>
       </div>
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error</span>
           <p>Aplicar bicarbonato o productos químicos durante la temporada de lluvias</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p>La lluvia diluye los productos y hace inútil el tratamiento. La <strong>ventana óptima es enero–abril</strong> (temporada seca). En julio–septiembre: solo monitoreo y mapeo.</p>
         </div>
       </div>
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error</span>
           <p>Comprar, vender o decorar con heno motita en Navidad</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p>CONAFOR ha emitido alerta formal: el comercio navideño de heno motita es el <strong>principal vector de dispersión artificial</strong> a nuevas zonas y municipios. Su transporte sin bolsa sellada está desaconsejado.</p>
         </div>
       </div>
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error</span>
           <p>Creer que el tratamiento es definitivo y no monitorear</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p>Sin monitoreo cada <strong>4–6 meses</strong>, la infestación regresa silenciosamente. El control es un proceso continuo, no un evento único. El mejor tratamiento silvícola protege 5–7 años, pero después requiere mantenimiento preventivo.</p>
         </div>
       </div>
 
-      <div class="error-card">
-        <div class="error-wrong">
-          <div class="label">✗ Error (Zona Tula-Tepeji)</div>
+      <div class="field-card field-card--split">
+        <div class="field-card__panel field-card__panel--wrong">
+          <span class="etiqueta">✗ Error (Zona Tula-Tepeji)</span>
           <p>Usar la biomasa removida directamente como forraje o composta</p>
         </div>
-        <div class="error-right">
-          <div class="label">✓ Corrección</div>
+        <div class="field-card__panel field-card__panel--right">
+          <span class="etiqueta">✓ Corrección</span>
           <p>En la zona industrial, el heno motita acumula <strong>plomo, cadmio y otros metales pesados</strong> hasta 40× por encima de zonas agrícolas. Requiere análisis de metales antes de usar como alimento animal o sustrato. <cite>(ACP 2009)</cite></p>
         </div>
       </div>
@@ -2884,8 +2842,8 @@ footer {
           <li><strong>Ensacar inmediatamente</strong> — el material separado mantiene viabilidad hasta 6 meses</li>
           <li>Sellar la bolsa y trasladar al sitio de quema ese mismo día</li>
         </ol>
-        <div class="tip-box">
-          <strong>Protección: 5–7 años</strong> con remoción completa. Más económico que la poda (INIFAP). No genera heridas que requieran cicatrizante.
+        <div class="nota-campo nota-campo--tip">
+          <p><strong>Protección: 5–7 años</strong> con remoción completa. Más económico que la poda (INIFAP). No genera heridas que requieran cicatrizante.</p>
         </div>
       </div>
 
@@ -2909,8 +2867,8 @@ footer {
           <li>Asperjar hasta <strong>saturación completa</strong> — no solo superficialmente</li>
           <li>Solo en <strong>temporada seca</strong> — la lluvia anula el efecto</li>
         </ol>
-        <div class="warning-box">
-          <h4>⚠ Sin remoción mecánica el efecto es temporal</h4>
+        <div class="nota-campo nota-campo--warning">
+          <span class="nota-titulo">⚠ Sin remoción mecánica el efecto es temporal</span>
           <p>La planta inicia recuperación ~1 semana después de terminar 9 semanas de tratamiento químico. <cite>UTTT 2024</cite></p>
         </div>
       </div>
@@ -2962,20 +2920,20 @@ footer {
     <div class="reveal">
       <p style="font-family:var(--font-sans);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--terracota);margin-bottom:1.1rem;display:flex;align-items:center;gap:10px;"><span style="display:block;width:28px;height:2px;background:var(--terracota);flex-shrink:0;"></span>Calendario de Intervención</p>
       <div class="calendario-grid">
-        <div class="calendario-fenologico optimal">
-          <span class="s-label">✓ Enero–Abril · Temporada Óptima</span>
+        <div class="nota-campo nota-campo--season optimal">
+          <span class="nota-titulo">✓ Enero–Abril · Temporada Óptima</span>
           <p>Intervención principal. Árboles en reposo, antes de la dispersión de semillas. Tricomas más activas para absorber el bicarbonato. Aplican todos los métodos.</p>
         </div>
-        <div class="calendario-fenologico secondary">
-          <span class="s-label">≈ Mayo–Junio · Aceptable</span>
+        <div class="nota-campo nota-campo--season secondary">
+          <span class="nota-titulo">≈ Mayo–Junio · Aceptable</span>
           <p>Ventana secundaria si se perdió la primera. Solo antes de la floración.</p>
         </div>
-        <div class="calendario-fenologico avoid">
-          <span class="s-label">✗ Julio–Septiembre · Evitar aspersiones</span>
+        <div class="nota-campo nota-campo--season avoid">
+          <span class="nota-titulo">✗ Julio–Septiembre · Evitar aspersiones</span>
           <p>La lluvia diluye los productos y anula el efecto. Solo mapeo y registro de nuevas infestaciones.</p>
         </div>
-        <div class="calendario-fenologico plan">
-          <span class="s-label">→ Octubre–Diciembre · Planear</span>
+        <div class="nota-campo nota-campo--season plan">
+          <span class="nota-titulo">→ Octubre–Diciembre · Planear</span>
           <p>Evaluar efectividad de la campaña. Planear la siguiente. Coordinar con ejidos y cuadras vecinas.</p>
         </div>
       </div>
@@ -2994,32 +2952,32 @@ footer {
     </div>
 
     <div class="campaign-grid reveal">
-      <div class="campaign-card">
+      <div class="field-card">
         <div class="c-icon">🔧</div>
         <h4>Brigada Mecánica</h4>
         <p>Extracción con varilla corrugada y poda. Sin necesidad de experiencia previa.</p>
       </div>
-      <div class="campaign-card">
+      <div class="field-card">
         <div class="c-icon">🧪</div>
         <h4>Aplicación Química</h4>
         <p>Aplicación de bicarbonato. Requiere capacitación básica en manejo de aspersoras.</p>
       </div>
-      <div class="campaign-card">
+      <div class="field-card">
         <div class="c-icon">📅</div>
         <h4>Campaña Estacional</h4>
         <p>Operaciones coordinadas en la ventana enero–abril, la más efectiva del año.</p>
       </div>
-      <div class="campaign-card">
+      <div class="field-card">
         <div class="c-icon">🌳</div>
         <h4>Restauración Silvícola</h4>
         <p>Aclareo y poda estructural. Protección de 5–7 años para el arbolado.</p>
       </div>
-      <div class="campaign-card">
+      <div class="field-card">
         <div class="c-icon">👁️</div>
         <h4>Monitoreo Ciudadano</h4>
         <p>Inspección visual y registro de infestaciones. Ideal para jóvenes y adultos mayores.</p>
       </div>
-      <div class="campaign-card">
+      <div class="field-card">
         <div class="c-icon">📢</div>
         <h4>Difusión Comunitaria</h4>
         <p>Capacitación en colonias y ejidos. Compartir esta información salva árboles.</p>
