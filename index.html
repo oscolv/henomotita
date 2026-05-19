@@ -84,6 +84,15 @@ small { font-size: 0.85em; color: var(--corteza); }
   font-size: 0.9em; letter-spacing: 0.01em;
 }
 
+/* ─── UTILIDADES TIPOGRÁFICAS ─── */
+.mono  { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.serif { font-family: 'Source Serif 4', Georgia, serif; }
+.sans  { font-family: 'Inter', system-ui, sans-serif; }
+.label-upper {
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
 /* ─── LAYOUT ─── */
 .container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
 
@@ -248,7 +257,7 @@ small { font-size: 0.85em; color: var(--corteza); }
   background: var(--tinta); color: var(--papel) !important;
   border: 2px solid var(--tinta); border-radius: 0;
   justify-content: center; letter-spacing: 0.04em;
-  font-size: 0.95rem; box-shadow: none;
+  font-size: 0.95rem;
 }
 .mobile-menu .mobile-cta::after { display: none; }
 .mobile-menu .mobile-cta:active { background: var(--papel); color: var(--tinta) !important; }
@@ -391,7 +400,6 @@ small { font-size: 0.85em; color: var(--corteza); }
   border-top: 3px solid var(--mezquite-oscuro);
   border-radius: 0;
   padding: 1.5rem 1.4rem;
-  box-shadow: none;
   transition: border-color var(--t), border-top-color var(--t);
   position: relative;
 }
@@ -428,7 +436,7 @@ small { font-size: 0.85em; color: var(--corteza); }
   background: var(--rojo-alerta-bg);
   border: 1px solid var(--rojo-alerta);
   border-left: 4px solid var(--rojo-alerta);
-  border-radius: 0; box-shadow: none;
+  border-radius: 0;
   padding: 1.25rem 1.4rem;
   display: flex; gap: 1.1rem; align-items: flex-start; margin-top: 1.5rem;
 }
@@ -491,7 +499,6 @@ small { font-size: 0.85em; color: var(--corteza); }
   background: var(--papel);
   border: 1px solid var(--caliza);
   border-radius: 2px;
-  box-shadow: none;
   overflow: hidden;
 }
 
@@ -558,7 +565,6 @@ small { font-size: 0.85em; color: var(--corteza); }
   border: 1px solid var(--caliza);
   border-left: 3px solid var(--corteza);
   border-radius: 0; padding: 1.1rem 1.2rem;
-  box-shadow: none;
 }
 .calendario-fenologico.optimal   { border-left-color: var(--mezquite-oscuro); }
 .calendario-fenologico.secondary { border-left-color: var(--heno-seco); }
@@ -593,10 +599,7 @@ small { font-size: 0.85em; color: var(--corteza); }
   border-radius: 0;
   overflow: hidden;
   background: var(--papel);
-  box-shadow: none;
-  transition: box-shadow var(--t);
 }
-.error-card:hover { box-shadow: none; }
 
 .error-wrong {
   background: var(--rojo-alerta-bg); padding: 1.1rem 1.4rem;
@@ -628,9 +631,8 @@ small { font-size: 0.85em; color: var(--corteza); }
   margin-bottom: 8px;
   background: var(--papel);
   overflow: hidden;
-  transition: box-shadow var(--t);
 }
-.faq-item.open { box-shadow: none; border-color: var(--mezquite-oscuro); }
+.faq-item.open { border-color: var(--mezquite-oscuro); }
 
 .faq-q {
   width: 100%; background: none; border: none; cursor: pointer;
@@ -684,7 +686,7 @@ small { font-size: 0.85em; color: var(--corteza); }
 
 .form-container {
   background: var(--papel); border-radius: 0;
-  padding: 2.25rem; box-shadow: none;
+  padding: 2.25rem;
   max-width: 720px; margin: 0 auto;
   border: 1px solid var(--caliza);
 }
@@ -755,7 +757,6 @@ textarea { resize: vertical; min-height: 95px; font-family: 'Inter', system-ui, 
   background: var(--papel);
   border: 1px solid var(--caliza);
   border-radius: 0; padding: 1.3rem 1.4rem;
-  box-shadow: none;
   transition: border-color var(--t);
 }
 .ficha-fuente:hover { border-color: var(--corteza); }
@@ -910,7 +911,6 @@ footer {
   padding: 0.7rem 1.2rem; border-radius: 0;
   border: 2px solid var(--tinta);
   text-decoration: none;
-  box-shadow: none;
   align-items: center; gap: 7px;
   transition: background var(--t), color var(--t);
 }
@@ -1019,7 +1019,7 @@ footer {
   letter-spacing: 0.09em; text-transform: uppercase; color: var(--tinta);
   white-space: nowrap; opacity: 0; transition: opacity 0.15s ease;
   background: var(--papel); padding: 3px 9px; border-radius: 0;
-  border: 1px solid var(--caliza); box-shadow: none; pointer-events: none;
+  border: 1px solid var(--caliza); pointer-events: none;
 }
 .s-dot:hover .dot-tip { opacity: 1; }
 
@@ -1250,7 +1250,7 @@ footer {
 .ref-filter {
   font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 0.7rem;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 6px 18px; border-radius: 3px; cursor: pointer;
+  padding: 6px 18px; border-radius: 0; cursor: pointer;
   background: var(--papel); border: 1.5px solid var(--caliza);
   color: var(--corteza); transition: all var(--t);
 }
@@ -1297,7 +1297,6 @@ footer {
   border-top: 4px solid var(--mezquite-oscuro);
   border-radius: 2px;
   padding: 1.45rem;
-  box-shadow: none;
   display: flex;
   flex-direction: column;
 }
@@ -1425,7 +1424,6 @@ footer {
   border-top: 3px solid var(--mezquite-oscuro);
   border-radius: 2px;
   padding: 1.45rem;
-  box-shadow: none;
   display: flex;
   flex-direction: column;
 }
@@ -1498,7 +1496,6 @@ footer {
   border: 1px solid var(--caliza);
   border-radius: 2px;
   padding: 1.5rem;
-  box-shadow: none;
 }
 
 .quick-materials h3 { color: var(--mezquite-oscuro); margin-bottom: 0.4rem; font-size: 1.1rem; }
@@ -1519,7 +1516,7 @@ footer {
   padding: 0.45rem 0.85rem;
   background: var(--papel);
   border: 1px solid var(--caliza);
-  border-radius: 999px;
+  border-radius: 0;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
@@ -1896,8 +1893,7 @@ footer {
       <figure style="margin:0;text-align:center;">
         <img src="images/frutos_2.webp"
              alt="Semillas plumosas de Tillandsia recurvata listas para dispersarse por el viento"
-             style="width:100%;max-width:360px;height:auto;display:inline-block;
-                    border-radius:0;box-shadow:none;">
+             style="width:100%;max-width:360px;height:auto;display:inline-block;">
         <figcaption style="margin-top:0.5rem;font-family:'Inter', system-ui, sans-serif;
                            font-size:0.76rem;color:var(--corteza);font-style:italic;">
           Semillas plumosas de <em>T. recurvata</em> — dispersión anemócora
@@ -2103,7 +2099,7 @@ footer {
     <div class="reveal" style="max-width:680px;margin:0 auto 2.5rem;text-align:center;">
       <figure style="margin:0;">
         <img src="images/ZRE.png" alt="Mapa de la Zona de Restauración Ecológica — área de influencia de la presa Endhó, Hidalgo. Tres polígonos en los municipios de Tula de Allende, Tepeji del Río, Atitalaquia, Atotonilco de Tula, Tepetitlán, Tezontepec de Aldama, Tlahuelilpan y Tlaxcoapan."
-             style="width:100%;border-radius:0;border:1px solid var(--caliza);box-shadow:none;">
+             style="width:100%;border:1px solid var(--caliza);">
         <figcaption style="font-family:'Inter', system-ui, sans-serif;font-size:0.74rem;color:var(--corteza);margin-top:0.75rem;line-height:1.5;">
           Zona de Restauración Ecológica — Presa Endhó · 2024
         </figcaption>
@@ -2146,7 +2142,7 @@ footer {
       <p>Ningún método aislado es suficiente a largo plazo. La combinación mecánica + química + silvícola, aplicada en temporada correcta, es el enfoque científicamente respaldado.</p>
     </div>
 
-    <figure class="reveal" style="margin:0 auto 2.5rem;border-radius:2px;overflow:hidden;box-shadow:none;max-width:560px;">
+    <figure class="reveal" style="margin:0 auto 2.5rem;overflow:hidden;max-width:560px;">
       <img src="images/tillandsia_2.webp"
            alt="Heno motita con cápsulas abiertas, el viento dispersa las semillas"
            style="width:100%;height:auto;display:block;">
@@ -2514,7 +2510,7 @@ footer {
       <p>La prevención no es erradicación total — es mantener la densidad por debajo del umbral de daño. Cinco acciones con base científica.</p>
     </div>
 
-    <figure class="reveal" style="margin:0 0 2.5rem;border-radius:2px;overflow:hidden;box-shadow:none;">
+    <figure class="reveal" style="margin:0 0 2.5rem;overflow:hidden;">
       <img src="images/arbol_tillandsia.webp"
            alt="Árbol de mezquite con infestación intermedia de Tillandsia recurvata en el Valle del Mezquital — aún recuperable con intervención oportuna"
            style="width:100%;height:auto;display:block;">
