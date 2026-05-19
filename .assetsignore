@@ -1,3 +1,6 @@
+.git/
+.wrangler/
+.claude/
 node_modules/
 .github/
 *.py
@@ -5,3 +8,4 @@ node_modules/
 *.md
 _redirects
 .assetsignore
+.gitignore
