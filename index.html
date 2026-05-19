@@ -96,11 +96,17 @@ small { font-size: 0.85em; color: var(--corteza); }
 /* ─── LAYOUT ─── */
 .container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
 
-.section     { padding: 4.5rem 0; border-top: 1px solid var(--caliza); }
-.section-alt { background: var(--papel); }
-.section-dark{ background: var(--papel-alt); color: var(--tinta); border-top: 4px solid var(--mezquite-oscuro); }
+.section        { padding: 3rem 0; border-top: 1px solid var(--caliza); }
+.section--dense { padding: 2rem 0; }
+.section--cta   { padding: 4rem 0; }
+.section-alt    { background: var(--papel); }
+.section-dark   { background: var(--papel-alt); color: var(--tinta); border-top: 4px solid var(--mezquite-oscuro); }
 
-@media(min-width:768px) { .section { padding: 6rem 0; } }
+@media(min-width:768px) {
+  .section        { padding: 5rem 0; }
+  .section--dense { padding: 3.5rem 0; }
+  .section--cta   { padding: 6rem 0; }
+}
 
 /* Bloques nuevos: nota-campo y ficha-tecnica */
 .nota-campo {
@@ -925,7 +931,6 @@ footer {
   .nav-logo svg { width: 24px; height: 24px; }
   .nav-logo-loc { display: none; }
 
-  .section { padding: 2.75rem 0; }
   .section-header { margin-bottom: 2rem; }
   .sh-lead { font-size: 0.97rem; }
 
@@ -1918,7 +1923,7 @@ footer {
 </section>
 
 <!-- ═══════════════════════════════════ EL PROBLEMA ═══════════════════════════════════ -->
-<section id="problema" class="section" style="overflow:hidden;">
+<section id="problema" class="section section--dense" style="overflow:hidden;">
   <div class="container">
     <div class="section-header reveal">
       <div class="badge-science">Impacto Regional</div>
@@ -2579,7 +2584,7 @@ footer {
 </section>
 
 <!-- ═══════════════════════════════════ ERRORES ═══════════════════════════════════ -->
-<section id="errores" class="section section-errores" style="overflow:hidden;">
+<section id="errores" class="section section--dense section-errores" style="overflow:hidden;">
   <div class="container">
     <div class="section-header reveal">
       <div class="badge-science">Errores Documentados</div>
@@ -2683,7 +2688,7 @@ footer {
 </section>
 
 <!-- ═══════════════════════════════════ FAQ ═══════════════════════════════════ -->
-<section id="faq" class="section section-alt" style="overflow:hidden;">
+<section id="faq" class="section section--dense section-alt" style="overflow:hidden;">
   <div class="container">
     <div class="section-header reveal">
       <div class="badge-science">Preguntas Frecuentes</div>
@@ -2976,7 +2981,7 @@ footer {
 </section>
 
 <!-- ═══════════════════════════════════ ÚNETE ═══════════════════════════════════ -->
-<section id="unete" class="section section-dark" style="overflow:hidden;">
+<section id="unete" class="section section--cta section-dark" style="overflow:hidden;">
   <div class="container">
     <div class="section-header reveal">
       <div class="badge-science" style="background:rgba(196,134,42,0.2); border-color:rgba(196,134,42,0.4); color:var(--heno-seco);">Acción Comunitaria</div>
