@@ -148,6 +148,18 @@ small { font-size: 0.85em; color: var(--corteza); }
 .section-header.centered { text-align: center; }
 .section-header.centered .sh-rule { margin: 0 auto 0; }
 
+/* Variantes de section-header (regla 2.1) */
+.section-header--right { text-align: right; }
+.section-header--right .divider { margin-left: auto; }
+.section-header--right .sh-lead, .section-header--right p { margin-left: auto; }
+.section-header--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: end;
+}
+@media(max-width:768px) { .section-header--split { grid-template-columns: 1fr; gap: 0.5rem; } }
+
 .sh-eyebrow {
   font-family: var(--font-sans);
   font-size: 0.7rem; font-weight: 700;
@@ -2584,9 +2596,8 @@ footer {
 <!-- ═══════════════════════════════════ ERRORES ═══════════════════════════════════ -->
 <section id="errores" class="section section--dense section-errores" style="overflow:hidden;">
   <div class="container">
-    <div class="section-header reveal">
+    <div class="section-header section-header--split reveal">
       <h2><span class="seccion-numero">07.</span>Errores Más Comunes</h2>
-      <div class="divider"></div>
       <p>Los errores más frecuentes que hacen que los esfuerzos de control fracasen, con la corrección basada en evidencia.</p>
     </div>
 
@@ -2687,10 +2698,8 @@ footer {
 <!-- ═══════════════════════════════════ FAQ ═══════════════════════════════════ -->
 <section id="faq" class="section section--dense section-alt" style="overflow:hidden;">
   <div class="container">
-    <div class="section-header reveal">
+    <div class="section-header reveal" style="margin-bottom:2rem;">
       <h2><span class="seccion-numero">08.</span>Preguntas Frecuentes</h2>
-      <div class="divider"></div>
-      <p>Respuestas basadas en investigación científica, adaptadas para la población general.</p>
     </div>
 
     <div class="faq-list reveal">
@@ -3125,7 +3134,7 @@ footer {
 <!-- ═══════════════════════════════════ REFERENCIAS ═══════════════════════════════════ -->
 <section id="referencias" class="section" style="overflow:hidden;">
   <div class="container">
-    <div class="section-header reveal">
+    <div class="section-header section-header--right reveal">
       <h2><span class="seccion-numero">11.</span>Respaldo Científico</h2>
       <div class="divider"></div>
       <p>Toda la información en este sitio está respaldada por investigación revisada por pares o fuentes institucionales verificadas. Haz clic en los enlaces para acceder a los artículos originales.</p>
